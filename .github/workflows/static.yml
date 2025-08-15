@@ -145,7 +145,7 @@
         <a href="#ask">Ask</a>
         <!-- Preview (pill), Full guide (btn) with same UI in new tab -->
         <a class="pill" href="#docs-view">Preview Guide</a>
-        <a class="btn" href="?mode=reader#full-guide" target="_blank" rel="noopener">Open Full Guide in New Tab</a>
+        <a class="btn" href="BananaTech-Hackintosh-Guide.pdf" target="_blank" rel="noopener">Open Full Guide in New Tab</a>
       </nav>
     </div>
   </header>
@@ -165,7 +165,7 @@
           </div>
           <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
             <a class="pill" href="#docs-view">Preview Guide</a>
-            <a class="btn" href="?mode=reader#full-guide" target="_blank" rel="noopener">Open Full Guide in New Tab</a>
+            <a class="btn" href="BananaTech-Hackintosh-Guide.pdf" target="_blank" rel="noopener">Open Full Guide in New Tab</a>
           </div>
         </div>
         <div class="card">
@@ -222,7 +222,7 @@
         <object data="BananaTech-Hackintosh-Guide.pdf#toolbar=1&navpanes=0&view=FitH" type="application/pdf">
           <div style="padding:24px">
             <p>Your browser can’t show PDFs inline.
-              <a class="btn" href="?mode=reader#full-guide" target="_blank" rel="noopener">Open Full Guide in New Tab</a>.
+              <a class="btn" href="BananaTech-Hackintosh-Guide.pdf" target="_blank" rel="noopener">Open Full Guide in New Tab</a>.
             </p>
           </div>
         </object>
