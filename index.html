@@ -13,9 +13,7 @@
     --shadow:0 10px 30px rgba(0,0,0,.35); --radius:18px; --header-h:72px;
 
     /* Contained docs-style canvas */
-    --doc-w: 720px;
-    --doc-h: 1020px;
-    --doc-scale: .9; /* JS keeps background visible around the page */
+    --doc-w: 720px; --doc-h: 1020px; --doc-scale: .9;
     --speed-1: 400ms; --speed-2: 700ms; --ease-1: cubic-bezier(.2,.7,.1,1); --ease-2: cubic-bezier(.22,1,.36,1);
   }
 
@@ -59,7 +57,7 @@
   /* Buttons — never underline + micro interactions */
   a, a:hover, a:focus{ text-decoration:none; }
   .btn,.pill{display:inline-flex; align-items:center; gap:.6ch; border:none; cursor:pointer; font-weight:800; letter-spacing:.2px; text-decoration:none !important; position:relative; overflow:hidden}
-  .btn{background:linear-gradient(100deg, var(--accent), var(--accent-2)); color:#1f2937; padding:11px 18px; border-radius:12px; box-shadow:0 8px 26px rgba(255,216,74,.28); transition: transform .2s var(--ease-1), box-shadow .2s var(--ease-1)}
+  .btn{background:linear-gradient(100deg, var(--accent), var(--accent-2)); color:black; padding:11px 18px; border-radius:12px; box-shadow:0 8px 26px rgba(255,216,74,.28); transition: transform .2s var(--ease-1), box-shadow .2s var(--ease-1)}
   .btn:hover{ transform: translateY(-1px); box-shadow:0 14px 36px rgba(255,216,74,.34) }
   .btn:active{ transform: translateY(0) scale(.98) }
   .btn:focus{ outline:3px solid var(--ring) }
@@ -106,41 +104,31 @@
   .notice{background:#0f1628; border:1px dashed rgba(229,231,235,.18); border-radius:14px; padding:10px}
 
   /* ---------- SINGLE, CONTAINED DOCS-STYLE GUIDE SECTION ---------- */
-  .docs-bg{
-    background:#0b1222;
-    padding:40px 0 80px;      /* breathing room so site bg shows */
-  }
-  .doc-canvas{
-    width:100%;
-    display:flex;
-    justify-content:center;
-    padding:0 20px;           /* gutter on smallest screens */
-  }
+  .docs-bg{ background:#0b1222; padding:40px 0 80px }
+  .doc-canvas{ width:100%; display:flex; justify-content:center; padding:0 20px }
   .doc-page{
-    width:var(--doc-w);
-    height:var(--doc-h);
-    background:#fff;
-    color:#111827;
-    border-radius:10px;
-    border:3px solid rgba(0,0,0,.08);   /* subtle frame */
-    box-shadow:
-      0 1px 2px rgba(0,0,0,.12),
-      0 20px 60px rgba(0,0,0,.30);
-    transform-origin:top center;
-    transform: scale(var(--doc-scale));
-    overflow:hidden;
+    width:var(--doc-w); height:var(--doc-h);
+    background:#fff; color:#111827; border-radius:10px; border:3px solid rgba(0,0,0,.08);
+    box-shadow: 0 1px 2px rgba(0,0,0,.12), 0 20px 60px rgba(0,0,0,.30);
+    transform-origin:top center; transform: scale(var(--doc-scale)); overflow:hidden;
     transition: box-shadow var(--speed-2) var(--ease-2), transform var(--speed-2) var(--ease-2);
   }
   .doc-page:hover{ box-shadow: 0 1px 2px rgba(0,0,0,.12), 0 30px 90px rgba(0,0,0,.36) }
+  /* HiDPI preview: render 2x, scale to same visual size */
+  .doc-page > object{ width:200%; height:200%; border:0; transform: scale(0.5); transform-origin: top left; }
 
-  /* HiDPI (1080p-ish) rendering: render at 2x then scale down to same visual size */
-  .doc-page > object{
-    width:200%;
-    height:200%;
-    border:0;
-    transform: scale(0.5);
-    transform-origin: top left;
+  /* ---------- FULL-SCREEN READER (same UI) ---------- */
+  .fullbleed{ width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw) }
+  .section--edge{ padding:0 }
+  .pdf-frame-full{
+    width:100vw;
+    height:calc(100vh - var(--header-h));
+    border:none; background:#0f1628; display:block;
   }
+  .floating-pill{
+    position:fixed; right:16px; bottom:16px; z-index:60; display:none;
+  }
+  .reader-mode .floating-pill{ display:inline-flex; }
 </style>
 </head>
 <body>
@@ -155,36 +143,35 @@
         <a href="#guide">Highlights</a>
         <a href="#faq">FAQ</a>
         <a href="#ask">Ask</a>
-        <!-- Swapped styles -->
+        <!-- Preview (pill), Full guide (btn) with same UI in new tab -->
         <a class="pill" href="#docs-view">Preview Guide</a>
-        <a class="btn" href="BananaTech-Hackintosh-Guide.pdf" target="_blank" rel="noopener">Open Full Guide in New Tab</a>
+        <a class="btn" href="?mode=reader#full-guide" target="_blank" rel="noopener">Open Full Guide in New Tab</a>
       </nav>
     </div>
   </header>
 
-  <!-- HOME PAGE (no embedded PDF here) -->
+  <!-- HOME PAGE -->
   <main id="top" class="container">
     <section class="hero">
       <div class="hero-grid">
         <div>
           <div class="kicker">Banana Tech</div>
-          <h1>Get macOS on compatible Windows PCs — with a friendly guide and real answers</h1>
-          <p>Our step‑by‑step PDF walks you through creating an OpenCore installer, preparing your EFI, and installing macOS. When you hit a snag, the FAQ and question form have your back.</p>
+          <h1>Get macOS on compatible PCs — with a friendly guide and real answers</h1>
+          <p>Our step-by-step PDF walks you through creating an OpenCore installer, preparing your EFI, and installing macOS. When you hit a snag, the FAQ and question form have your back.</p>
           <div class="badges">
             <div class="badge"><strong>Windows Vista+</strong> required</div>
             <div class="badge">16 GB+ USB drive</div>
             <div class="badge">Stable ethernet recommended</div>
           </div>
           <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
-            <!-- Swapped styles -->
             <a class="pill" href="#docs-view">Preview Guide</a>
-            <a class="btn" href="BananaTech-Hackintosh-Guide.pdf" target="_blank" rel="noopener">Open Full Guide in New Tab</a>
+            <a class="btn" href="?mode=reader#full-guide" target="_blank" rel="noopener">Open Full Guide in New Tab</a>
           </div>
         </div>
         <div class="card">
           <h3 style="margin-top:0">What’s inside the guide</h3>
-          <p class="small">A step‑by‑step illustrated PDF covering OpenCore installer creation, EFI setup, and troubleshooting tips for running macOS on compatible PCs.</p>
-          <div class="notice small">Includes detailed kext selection, ProperTree cleanup, and post‑install configuration.</div>
+          <p class="small">A step-by-step illustrated PDF covering OpenCore installer creation, EFI setup, and troubleshooting tips for running macOS on compatible PCs.</p>
+          <div class="notice small">Includes detailed kext selection, ProperTree cleanup, and post-install configuration.</div>
         </div>
       </div>
     </section>
@@ -208,7 +195,7 @@
         <div class="faq-item"><div class="faq-q"><h3>What do I need before starting?</h3><span>＋</span></div><div class="faq-a"><p>Windows Vista or newer, 16 GB+ USB, reliable internet, and ideally ethernet for the installer.</p></div></div>
         <div class="faq-item"><div class="faq-q"><h3>Which macOS version can I run?</h3><span>＋</span></div><div class="faq-a"><p>Run OpCore Simplify and pick the highest “Supported macOS Version.”</p></div></div>
         <div class="faq-item"><div class="faq-q"><h3>Something shows unsupported</h3><span>＋</span></div><div class="faq-a"><p>That machine may not be ideal. You can try alternate kexts but expect instability.</p></div></div>
-        <div class="faq-item"><div class="faq-q"><h3>Do I need Wi‑Fi?</h3><span>＋</span></div><div class="faq-a"><p>Use ethernet during install. Wi‑Fi depends on hardware + kexts; enable after macOS is installed.</p></div></div>
+        <div class="faq-item"><div class="faq-q"><h3>Do I need Wi-Fi?</h3><span>＋</span></div><div class="faq-a"><p>Use ethernet during install. Wi-Fi depends on hardware + kexts; enable after macOS is installed.</p></div></div>
         <div class="faq-item"><div class="faq-q"><h3>Reuse the USB later?</h3><span>＋</span></div><div class="faq-a"><p>Yes. Reformat it after setup, but back up your working EFI first.</p></div></div>
         <div class="faq-item"><div class="faq-q"><h3>Deeper help?</h3><span>＋</span></div><div class="faq-a"><p>See Dortania’s OpenCore Install Guide and your motherboard community resources.</p></div></div>
       </div>
@@ -228,21 +215,35 @@
     <hr>
   </main>
 
-  <!-- SINGLE, CONTAINED DOCS-STYLE GUIDE -->
+  <!-- CONTAINED DOCS-STYLE PREVIEW -->
   <section id="docs-view" class="docs-bg" aria-label="Guide (docs-style)">
     <div class="doc-canvas">
       <div class="doc-page" role="region" aria-label="Guide page">
         <object data="BananaTech-Hackintosh-Guide.pdf#toolbar=1&navpanes=0&view=FitH" type="application/pdf">
           <div style="padding:24px">
             <p>Your browser can’t show PDFs inline.
-              <!-- Swapped style -->
-              <a class="btn" href="BananaTech-Hackintosh-Guide.pdf" target="_blank" rel="noopener">Open Full Guide in New Tab</a>.
+              <a class="btn" href="?mode=reader#full-guide" target="_blank" rel="noopener">Open Full Guide in New Tab</a>.
             </p>
           </div>
         </object>
       </div>
     </div>
   </section>
+
+  <!-- FULL-SCREEN READER (same UI; used when ?mode=reader) -->
+  <section id="full-guide" class="section section--edge fullbleed" aria-label="Full-screen guide">
+    <object class="pdf-frame-full"
+            data="BananaTech-Hackintosh-Guide.pdf#toolbar=1&navpanes=0&view=FitH"
+            type="application/pdf">
+      <p class="container small" style="padding:16px 20px">
+        Your browser cannot display PDFs inline.
+        <a class="btn" href="BananaTech-Hackintosh-Guide.pdf" target="_blank" rel="noopener">Open PDF in new tab</a>.
+      </p>
+    </object>
+  </section>
+
+  <!-- Back to top (only visible in reader mode) -->
+  <a id="backTop" class="pill floating-pill" href="#top" aria-label="Back to top">↑ Back to top</a>
 
   <footer class="container"><div>© Banana Tech — Built with ❤️</div></footer>
 
@@ -255,13 +256,18 @@
       });
     });
 
-    // Nav shade on scroll
+    // Nav shade on scroll + dynamic header height
+    const header = document.getElementById('site-header');
     const onScroll = () => {
       const y = window.scrollY || document.documentElement.scrollTop;
       document.querySelector('.header').classList.toggle('scrolled', y > 6);
     };
-    window.addEventListener('scroll', onScroll, {passive:true});
-    onScroll();
+    window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+    function setHeaderHeight(){
+      const h = header?.offsetHeight || 72;
+      document.documentElement.style.setProperty('--header-h', h + 'px');
+    }
+    setHeaderHeight(); window.addEventListener('resize', setHeaderHeight);
 
     // Keep background showing around doc; cap visual size
     function layoutDocCanvas(){
@@ -271,8 +277,18 @@
       const scale = Math.min(0.9, maxW / pageW); // same visual size cap
       document.documentElement.style.setProperty('--doc-scale', scale.toString());
     }
-    layoutDocCanvas();
-    window.addEventListener('resize', layoutDocCanvas);
+    layoutDocCanvas(); window.addEventListener('resize', layoutDocCanvas);
+
+    // Reader mode (?mode=reader) — keeps UI and shows full-screen section
+    function applyReaderModeIfRequested(){
+      const params = new URLSearchParams(location.search);
+      if(params.get('mode') === 'reader'){
+        document.body.classList.add('reader-mode');
+        document.getElementById('full-guide')?.scrollIntoView({behavior:'instant'});
+        document.getElementById('backTop')?.classList.add('show');
+      }
+    }
+    applyReaderModeIfRequested();
 
     // FAQ accordion
     document.querySelectorAll('.faq-item').forEach(it=>{
