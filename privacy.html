@@ -1,12 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Privacy Policy — Banana Tech</title>
-  <link rel="icon" href="logo.png">
-
-  <!-- Google Analytics -->
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PM2BNW0Q6Z"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -15,45 +10,69 @@
     gtag('config', 'G-PM2BNW0Q6Z');
   </script>
 
-  <!-- (Optional) AdSense bootstrap -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7496234429485138" crossorigin="anonymous"></script>
-
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy — Banana Tech</title>
+  <link rel="icon" href="logo.png">
   <style>
-    body { font-family: system-ui, sans-serif; background:#0b1020; color:#e6edf3; line-height:1.6; margin:0; padding:40px; }
-    h1, h2 { color:#ffd84a; }
-    a { text-decoration:none; color:#ffd84a; }
-    .container { max-width: 800px; margin: auto; }
-    .btn {
-      display:inline-flex; align-items:center; gap:.6ch;
-      border:none; cursor:pointer; font-weight:800; letter-spacing:.2px;
-      text-decoration:none !important; background:linear-gradient(100deg,#ffd84a,#ffb300);
-      color:black; padding:11px 18px; border-radius:12px; box-shadow:0 8px 26px rgba(255,216,74,.28);
-      transition:transform .2s cubic-bezier(.2,.7,.1,1), box-shadow .2s cubic-bezier(.2,.7,.1,1);
+    :root{ --accent:#ffd84a; --accent-2:#ffb300; --ink:#e6edf3; --bg:#0b1020; }
+    *{box-sizing:border-box} html,body{margin:0}
+    body{
+      font-family:system-ui,ui-sans-serif,-apple-system,Segoe UI,Inter,Roboto,Arial,sans-serif;
+      background:linear-gradient(180deg,#0b1020,#0b1226); color:var(--ink); line-height:1.65
     }
-    .btn:hover { transform:translateY(-1px); box-shadow:0 14px 36px rgba(255,216,74,.34); }
+
+    .container{max-width:820px;margin:auto;padding:40px 22px}
+    h1,h2{color:var(--accent)}
+    .section{
+      background:linear-gradient(180deg,rgba(255,255,255,.04),transparent); border:1px solid rgba(229,231,235,.1);
+      border-radius:16px; padding:18px; box-shadow:0 10px 26px rgba(0,0,0,.28); margin:14px 0; 
+      opacity:0; transform:translateY(16px)
+    }
+    .section:nth-child(1){animation:rise .6s ease-out .05s forwards}
+    .section:nth-child(2){animation:rise .6s ease-out .15s forwards}
+    .section:nth-child(3){animation:rise .6s ease-out .25s forwards}
+    .section:nth-child(4){animation:rise .6s ease-out .35s forwards}
+    .section:nth-child(5){animation:rise .6s ease-out .45s forwards}
+    @keyframes rise{to{opacity:1; transform:none}}
+
+    .btn{
+      display:inline-flex;align-items:center;gap:.6ch;background:linear-gradient(100deg,#ffd84a,#ffb300);
+      color:black;font-weight:800;padding:11px 18px;border-radius:12px;box-shadow:0 8px 26px rgba(255,216,74,.28);
+      text-decoration:none; margin-top:10px; transition:transform .2s, box-shadow .2s; will-change:transform
+    }
+    .btn:hover{ transform:translateY(-1px); box-shadow:0 14px 36px rgba(255,216,74,.34) }
+    a.link{color:#ffd84a; text-decoration:underline}
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>Privacy Policy</h1>
-    <p>At Banana Tech, accessible from <a href="https://bananatechhackintosh.github.io">https://bananatechhackintosh.github.io</a>, we respect your privacy.</p>
+    <div class="section"><h1>Privacy Policy</h1><p>At Banana Tech, accessible from <a class="link" href="https://bananatechhackintosh.github.io">https://bananatechhackintosh.github.io</a>, we respect your privacy.</p></div>
 
-    <h2>Information We Collect</h2>
-    <p>When you submit a question through our contact form, we collect your name, email address, and your message. This information is only used to reply to your inquiry and provide support.</p>
+    <div class="section"><h2>Information We Collect</h2><p>When you submit a question through our contact form, we collect your name, email address, and your message. This information is only used to reply to your inquiry and provide support.</p></div>
 
-    <h2>Cookies and Ads</h2>
-    <p>We use Google AdSense to serve ads. Google may use cookies or similar technologies to deliver personalized advertising based on your browsing activity. You can opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads">Google Ads Settings</a>.</p>
+    <div class="section"><h2>Cookies and Ads</h2><p>We use Google AdSense to serve ads. Google may use cookies or similar technologies to deliver personalized advertising based on your browsing activity. You can opt out of personalized advertising by visiting <a class="link" href="https://www.google.com/settings/ads">Google Ads Settings</a>.</p></div>
 
-    <h2>Data Sharing</h2>
-    <p>We do not sell, trade, or share your personal information with third parties, except as required by law or to comply with Google AdSense policies.</p>
+    <div class="section"><h2>Data Sharing</h2><p>We do not sell, trade, or share your personal information with third parties, except as required by law or to comply with Google AdSense policies.</p></div>
 
-    <h2>Your Consent</h2>
-    <p>By using this site, you consent to our privacy policy.</p>
-
-    <h2>Contact</h2>
-    <p>If you have questions about this policy, please contact us through our <a href="index.html#ask">question form</a>.</p>
-
-    <a class="btn" href="index.html">← Back to Home</a>
+    <div class="section"><h2>Your Consent</h2><p>By using this site, you consent to our privacy policy.</p><p>Questions? Reach us via our <a class="link" href="index.html#ask">question form</a>.</p><a class="btn" href="index.html">← Back to Home</a></div>
   </div>
+
+  <script>
+    // Magnetic button
+    document.querySelectorAll('.btn').forEach(btn=>{
+      let rAF=0; const reset=()=>btn.style.transform='';
+      btn.addEventListener('mousemove', e=>{
+        cancelAnimationFrame(rAF);
+        rAF=requestAnimationFrame(()=>{
+          const r=btn.getBoundingClientRect();
+          const x=((e.clientX-r.left)/r.width-.5)*8;
+          const y=((e.clientY-r.top)/r.height-.5)*8;
+          btn.style.transform=`translate(${x}px,${y}px)`;
+        });
+      });
+      ['mouseleave','blur'].forEach(evt=>btn.addEventListener(evt,()=>{ cancelAnimationFrame(rAF); reset(); }));
+    });
+  </script>
 </body>
 </html>
