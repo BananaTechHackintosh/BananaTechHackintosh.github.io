@@ -1,162 +1,162 @@
 <!doctype html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PM2BNW0Q6Z"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PM2BNW0Q6Z"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PM2BNW0Q6Z');
+  </script>
 
-  gtag('config', 'G-PM2BNW0Q6Z');
-</script>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Banana Tech — Hackintosh Guide & Support</title>
+  <!-- AdSense (optional; harmless while in “Getting ready”) -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7496234429485138" crossorigin="anonymous"></script>
 
-<!-- SEO -->
-<meta name="description" content="Banana Tech offers a beginner-friendly Hackintosh guide to install macOS on your PC using OpenCore. Simple steps, FAQs, and support — an easier alternative to Dortania’s advanced documentation.">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Banana Tech — Hackintosh Guide & Support</title>
 
+  <!-- SEO -->
+  <meta name="description" content="Banana Tech offers a beginner-friendly Hackintosh guide to install macOS on your PC using OpenCore. Simple steps, FAQs, and support — an easier alternative to Dortania’s advanced documentation.">
 
-<link rel="icon" href="logo.png">
+  <link rel="icon" href="logo.png">
 
-<style>
-  :root{
-    --bg-1:#070a13; --bg-2:#0b1020; --card:#0f172a; --text:#e6edf3; --muted:#9aa4b2;
-    --line:rgba(255,255,255,.1); --accent:#ffd84a; --accent-2:#ffb300; --ring:rgba(255,216,74,.45);
-    --shadow:0 10px 30px rgba(0,0,0,.35); --radius:18px; --header-h:72px;
+  <style>
+    :root{
+      --bg-1:#070a13; --bg-2:#0b1020; --card:#0f172a; --text:#e6edf3; --muted:#9aa4b2;
+      --line:rgba(255,255,255,.1); --accent:#ffd84a; --accent-2:#ffb300; --ring:rgba(255,216,74,.45);
+      --shadow:0 10px 30px rgba(0,0,0,.35); --radius:18px; --header-h:72px;
 
-    /* Contained docs-style canvas (keeps site background visible) */
-    --doc-w: 720px; 
-    --doc-h: 1020px; 
-    --doc-scale: .9;
+      /* Contained docs-style canvas (keeps site background visible) */
+      --doc-w: 720px; 
+      --doc-h: 1020px; 
+      --doc-scale: .9;
 
-    --speed-1: 400ms; --speed-2: 700ms; 
-    --ease-1: cubic-bezier(.2,.7,.1,1); 
-    --ease-2: cubic-bezier(.22,1,.36,1);
-  }
+      --speed-1: 400ms; --speed-2: 700ms; 
+      --ease-1: cubic-bezier(.2,.7,.1,1); 
+      --ease-2: cubic-bezier(.22,1,.36,1);
+    }
 
-  *{box-sizing:border-box} html,body{margin:0}
-  html{scroll-behavior:smooth}
-  body{
-    font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,"Noto Sans",sans-serif;
-    color:var(--text);
-    background:
-      radial-gradient(1200px 800px at 10% -10%, #111827 0%, transparent 40%),
-      radial-gradient(1000px 600px at 110% 10%, rgba(255,216,74,.08), transparent 60%),
-      var(--bg-2);
-    line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden;
-  }
-  /* Ambient orbs */
-  .orb{position:fixed; inset:auto -10vw -10vh auto; width:45vmax; height:45vmax;
-       background:radial-gradient(closest-side,rgba(255,216,74,.10),transparent 70%);
-       filter:blur(30px); pointer-events:none; z-index:0; animation:float 16s ease-in-out infinite alternate}
-  .orb:nth-child(2){left:-10vw; bottom:-20vh; background:radial-gradient(closest-side,rgba(255,179,0,.10),transparent 70%); animation-duration:20s}
-  @keyframes float{from{transform:translateY(0)} to{transform:translateY(-2vh)}}
+    *{box-sizing:border-box} html,body{margin:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,"Noto Sans",sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 10% -10%, #111827 0%, transparent 40%),
+        radial-gradient(1000px 600px at 110% 10%, rgba(255,216,74,.08), transparent 60%),
+        var(--bg-2);
+      line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+    }
+    /* Ambient orbs */
+    .orb{position:fixed; inset:auto -10vw -10vh auto; width:45vmax; height:45vmax;
+         background:radial-gradient(closest-side,rgba(255,216,74,.10),transparent 70%);
+         filter:blur(30px); pointer-events:none; z-index:0; animation:float 16s ease-in-out infinite alternate}
+    .orb:nth-child(2){left:-10vw; bottom:-20vh; background:radial-gradient(closest-side,rgba(255,179,0,.10),transparent 70%); animation-duration:20s}
+    @keyframes float{from{transform:translateY(0)} to{transform:translateY(-2vh)}}
 
-  .container{max-width:1200px; margin:0 auto; padding:0 20px; position:relative; z-index:1}
+    .container{max-width:1200px; margin:0 auto; padding:0 20px; position:relative; z-index:1}
 
-  /* Sticky glass nav */
-  .header{
-    position:sticky; top:0; z-index:50;
-    backdrop-filter:saturate(140%) blur(10px);
-    background:linear-gradient(180deg, rgba(8,12,22,.72), rgba(8,12,22,.48));
-    border-bottom:1px solid var(--line);
-    transition: background var(--speed-1) var(--ease-1), box-shadow var(--speed-1) var(--ease-1);
-  }
-  .header.scrolled{ background:linear-gradient(180deg, rgba(8,12,22,.82), rgba(8,12,22,.62)); box-shadow:0 10px 30px rgba(0,0,0,.25) }
-  .nav{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0}
-  .brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--text)}
-  .brand img{width:42px; height:42px; border-radius:12px; box-shadow:var(--shadow); background:#0f1628; object-fit:contain}
-  .brand span{font-weight:900; letter-spacing:.25px; font-size:1.05rem}
-  .nav a{color:var(--text); text-decoration:none; opacity:.85; font-weight:600; margin:0 8px}
-  .nav a:hover{opacity:1}
+    /* Sticky glass nav */
+    .header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter:saturate(140%) blur(10px);
+      background:linear-gradient(180deg, rgba(8,12,22,.72), rgba(8,12,22,.48));
+      border-bottom:1px solid var(--line);
+      transition: background var(--speed-1) var(--ease-1), box-shadow var(--speed-1) var(--ease-1);
+    }
+    .header.scrolled{ background:linear-gradient(180deg, rgba(8,12,22,.82), rgba(8,12,22,.62)); box-shadow:0 10px 30px rgba(0,0,0,.25) }
+    .nav{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0}
+    .brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--text)}
+    .brand img{width:42px; height:42px; border-radius:12px; box-shadow:var(--shadow); background:#0f1628; object-fit:contain}
+    .brand span{font-weight:900; letter-spacing:.25px; font-size:1.05rem}
+    .nav a{color:var(--text); text-decoration:none; opacity:.85; font-weight:600; margin:0 8px}
+    .nav a:hover{opacity:1}
 
-  /* Buttons — never underline + micro interactions */
-  a, a:hover, a:focus{ text-decoration:none; }
-  .btn,.pill{display:inline-flex; align-items:center; gap:.6ch; border:none; cursor:pointer; font-weight:800; letter-spacing:.2px; text-decoration:none !important; position:relative; overflow:hidden}
-  .btn{
-    background:linear-gradient(100deg, var(--accent), var(--accent-2));
-    color:black; /* requested black text */
-    padding:11px 18px; border-radius:12px; 
-    box-shadow:0 8px 26px rgba(255,216,74,.28); 
-    transition: transform .2s var(--ease-1), box-shadow .2s var(--ease-1)
-  }
-  .btn:hover{ transform: translateY(-1px); box-shadow:0 14px 36px rgba(255,216,74,.34) }
-  .btn:active{ transform: translateY(0) scale(.98) }
-  .btn:focus{ outline:3px solid var(--ring) }
-  .pill{
-    border:1px solid rgba(229,231,235,.18); color:#e5e7eb; 
-    padding:8px 12px; border-radius:999px; 
-    transition: transform .2s var(--ease-1), background .2s
-  }
-  .pill:hover{ transform:translateY(-1px); background:rgba(255,255,255,.04) }
+    /* Buttons — never underline + micro interactions */
+    a, a:hover, a:focus{ text-decoration:none; }
+    .btn,.pill{display:inline-flex; align-items:center; gap:.6ch; border:none; cursor:pointer; font-weight:800; letter-spacing:.2px; text-decoration:none !important; position:relative; overflow:hidden}
+    .btn{
+      background:linear-gradient(100deg, var(--accent), var(--accent-2));
+      color:black; /* requested black text */
+      padding:11px 18px; border-radius:12px; 
+      box-shadow:0 8px 26px rgba(255,216,74,.28); 
+      transition: transform .2s var(--ease-1), box-shadow .2s var(--ease-1)
+    }
+    .btn:hover{ transform: translateY(-1px); box-shadow:0 14px 36px rgba(255,216,74,.34) }
+    .btn:active{ transform: translateY(0) scale(.98) }
+    .btn:focus{ outline:3px solid var(--ring) }
+    .pill{
+      border:1px solid rgba(229,231,235,.18); color:#e5e7eb; 
+      padding:8px 12px; border-radius:999px; 
+      transition: transform .2s var(--ease-1), background .2s
+    }
+    .pill:hover{ transform:translateY(-1px); background:rgba(255,255,255,.04) }
 
-  /* Hero / sections */
-  .hero{padding:76px 0 30px}
-  .hero-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:32px; align-items:center}
-  @media(max-width:900px){ .hero-grid{ grid-template-columns:1fr } }
-  .kicker{color:var(--accent); font-weight:900; letter-spacing:.06em; text-transform:uppercase; font-size:.8rem}
-  .hero h1{font-size:clamp(2rem,3.6vw,3.25rem); margin:.25rem 0 .6rem; line-height:1.12}
-  .hero p{color:#cbd5e1; max-width:60ch}
-  .card{ background:linear-gradient(180deg,rgba(255,255,255,.04),transparent); border:1px solid rgba(229,231,235,.08); border-radius:var(--radius); padding:20px; backdrop-filter: blur(2px) }
-  .badges{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px}
-  .badge{border:1px solid rgba(229,231,235,.16); padding:6px 10px; border-radius:999px; font-size:.85rem; color:#e5e7eb}
-  .badge strong{color:var(--accent)}
+    /* Hero / sections */
+    .hero{padding:76px 0 30px}
+    .hero-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:32px; align-items:center}
+    @media(max-width:900px){ .hero-grid{ grid-template-columns:1fr } }
+    .kicker{color:var(--accent); font-weight:900; letter-spacing:.06em; text-transform:uppercase; font-size:.8rem}
+    .hero h1{font-size:clamp(2rem,3.6vw,3.25rem); margin:.25rem 0 .6rem; line-height:1.12}
+    .hero p{color:#cbd5e1; max-width:60ch}
+    .card{ background:linear-gradient(180deg,rgba(255,255,255,.04),transparent); border:1px solid rgba(229,231,235,.08); border-radius:var(--radius); padding:20px; backdrop-filter: blur(2px) }
+    .badges{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px}
+    .badge{border:1px solid rgba(229,231,235,.16); padding:6px 10px; border-radius:999px; font-size:.85rem; color:#e5e7eb}
+    .badge strong{color:var(--accent)}
 
-  .grid{display:grid; gap:18px}
-  .cols-3{grid-template-columns:repeat(3,1fr)}
-  @media(max-width:900px){.cols-3{grid-template-columns:1fr}}
-  .section{padding:28px 0}
-  .section h2{font-size:1.6rem; margin:0 0 10px}
-  .section p.lead{color:#cbd5e1; margin:0 0 10px}
-  .feature{display:flex; gap:16px; align-items:flex-start}
-  .icon{width:38px; height:38px; border-radius:10px; background:#1f2937; display:grid; place-items:center; flex:0 0 38px}
-  .feature h3{margin:2px 0 6px; font-size:1.05rem}
-  .feature p{margin:0; color:#cbd5e1}
+    .grid{display:grid; gap:18px}
+    .cols-3{grid-template-columns:repeat(3,1fr)}
+    @media(max-width:900px){.cols-3{grid-template-columns:1fr}}
+    .section{padding:28px 0}
+    .section h2{font-size:1.6rem; margin:0 0 10px}
+    .section p.lead{color:#cbd5e1; margin:0 0 10px}
+    .feature{display:flex; gap:16px; align-items:flex-start}
+    .icon{width:38px; height:38px; border-radius:10px; background:#1f2937; display:grid; place-items:center; flex:0 0 38px}
+    .feature h3{margin:2px 0 6px; font-size:1.05rem}
+    .feature p{margin:0; color:#cbd5e1}
 
-  .faq-item{border:1px solid rgba(229,231,235,.12); border-radius:14px; padding:14px}
-  .faq-q{display:flex; align-items:center; justify-content:space-between; gap:10px; cursor:pointer}
-  .faq-q h3{margin:0; font-size:1rem}
-  .faq-a{max-height:0; overflow:hidden; transition:max-height .35s var(--ease-1), opacity .35s var(--ease-1); opacity:.6}
-  .faq-item.open .faq-a{ max-height:260px; opacity:1; margin-top:8px }
+    .faq-item{border:1px solid rgba(229,231,235,.12); border-radius:14px; padding:14px}
+    .faq-q{display:flex; align-items:center; justify-content:space-between; gap:10px; cursor:pointer}
+    .faq-q h3{margin:0; font-size:1rem}
+    .faq-a{max-height:0; overflow:hidden; transition:max-height .35s var(--ease-1), opacity .35s var(--ease-1); opacity:.6}
+    .faq-item.open .faq-a{ max-height:260px; opacity:1; margin-top:8px }
 
-  .form{display:grid; gap:12px}
-  .form label{font-weight:600}
-  .input, textarea{
-    background:#0f1628; border:1px solid rgba(229,231,235,.14); 
-    border-radius:12px; color:#fff; padding:12px 14px; width:100%;
-    transition: border-color .2s, box-shadow .2s 
-  }
-  .input:focus, textarea:focus{ outline:none; border-color:rgba(255,216,74,.35); box-shadow:0 0 0 3px var(--ring) }
-  .helper{color:#9aa4b2; font-size:.9rem}
-  footer{padding:28px 0; color:#9ca3af; font-size:.95rem}
-  hr{border:0; border-top:1px solid rgba(229,231,235,.08); margin:18px 0}
-  .small{font-size:.9rem; color:#a6b0bf}
-  .notice{background:#0f1628; border:1px dashed rgba(229,231,235,.18); border-radius:14px; padding:10px}
+    .form{display:grid; gap:12px}
+    .form label{font-weight:600}
+    .input, textarea{
+      background:#0f1628; border:1px solid rgba(229,231,235,.14); 
+      border-radius:12px; color:#fff; padding:12px 14px; width:100%;
+      transition: border-color .2s, box-shadow .2s 
+    }
+    .input:focus, textarea:focus{ outline:none; border-color:rgba(255,216,74,.35); box-shadow:0 0 0 3px var(--ring) }
+    .helper{color:#9aa4b2; font-size:.9rem}
+    footer{padding:28px 0; color:#9ca3af; font-size:.95rem}
+    hr{border:0; border-top:1px solid rgba(229,231,235,.08); margin:18px 0}
+    .small{font-size:.9rem; color:#a6b0bf}
+    .notice{background:#0f1628; border:1px dashed rgba(229,231,235,.18); border-radius:14px; padding:10px}
 
-  /* ---------- SINGLE, CONTAINED DOCS-STYLE GUIDE SECTION ---------- */
-  .docs-bg{ background:#0b1222; padding:40px 0 80px }
-  .doc-canvas{ width:100%; display:flex; justify-content:center; padding:0 20px }
-  .doc-page{
-    width:var(--doc-w); height:var(--doc-h);
-    background:#fff; color:#111827; border-radius:10px; 
-    border:3px solid rgba(0,0,0,.08);   /* subtle frame */
-    box-shadow: 0 1px 2px rgba(0,0,0,.12), 0 20px 60px rgba(0,0,0,.30);
-    transform-origin:top center; transform: scale(var(--doc-scale)); 
-    overflow:hidden;
-    transition: box-shadow var(--speed-2) var(--ease-2), transform var(--speed-2) var(--ease-2);
-  }
-  .doc-page:hover{ box-shadow: 0 1px 2px rgba(0,0,0,.12), 0 30px 90px rgba(0,0,0,.36) }
+    /* ---------- SINGLE, CONTAINED DOCS-STYLE GUIDE SECTION ---------- */
+    .docs-bg{ background:#0b1222; padding:40px 0 80px }
+    .doc-canvas{ width:100%; display:flex; justify-content:center; padding:0 20px }
+    .doc-page{
+      width:var(--doc-w); height:var(--doc-h);
+      background:#fff; color:#111827; border-radius:10px; 
+      border:3px solid rgba(0,0,0,.08);   /* subtle frame */
+      box-shadow: 0 1px 2px rgba(0,0,0,.12), 0 20px 60px rgba(0,0,0,.30);
+      transform-origin:top center; transform: scale(var(--doc-scale)); 
+      overflow:hidden;
+      transition: box-shadow var(--speed-2) var(--ease-2), transform var(--speed-2) var(--ease-2);
+    }
+    .doc-page:hover{ box-shadow: 0 1px 2px rgba(0,0,0,.12), 0 30px 90px rgba(0,0,0,.36) }
 
-  /* HiDPI (1080p-ish) preview: render at 2x then scale to same visual size */
-  .doc-page > object{
-    width:200%; height:200%; border:0; 
-    transform: scale(0.5); transform-origin: top left;
-  }
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7496234429485138"
-     crossorigin="anonymous"></script>
-</style>
+    /* HiDPI (1080p-ish) preview: render at 2x then scale to same visual size */
+    .doc-page > object{
+      width:200%; height:200%; border:0; 
+      transform: scale(0.5); transform-origin: top left;
+    }
+  </style>
 </head>
 <body>
   <div class="orb" aria-hidden="true"></div><div class="orb" aria-hidden="true"></div>
@@ -238,7 +238,9 @@
 
       <form id="question-form"
             class="form card"
-            action="https://formspree.io/f/xkgzeaag"  <!-- TODO: replace with your endpoint -->
+            action="https://formspree.io/f/xkgzeaag"
+            method="POST"
+            novalidate>
         <div>
           <label for="name">Name</label>
           <input id="name" name="name" class="input" type="text" placeholder="Your name" required>
@@ -288,17 +290,14 @@
     </div>
   </section>
 
-<footer class="container">
-  <div>© Banana Tech — Built with ❤️</div>
-  <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap">
-    <a class="btn" href="about.html">About</a>
-    <a class="btn" href="privacy.html">Privacy Policy</a>
-    <a class="btn" href="terms.html">Terms of Service</a>
-  </div>
-</footer>
-
-
-
+  <footer class="container">
+    <div>© Banana Tech — Built with ❤️</div>
+    <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap">
+      <a class="btn" href="about.html">About</a>
+      <a class="btn" href="privacy.html">Privacy Policy</a>
+      <a class="btn" href="terms.html">Terms of Service</a>
+    </div>
+  </footer>
 
   <script>
     // Smooth scroll
@@ -344,7 +343,7 @@
       const emailField = document.getElementById('email');
 
       // Slightly stricter email regex than the browser's
-      const emailRe = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+      const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
       form.addEventListener('submit', async (e) => {
         e.preventDefault();            // never allow native submit
