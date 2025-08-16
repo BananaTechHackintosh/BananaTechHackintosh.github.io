@@ -1,46 +1,43 @@
 <!doctype html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-PM2BNW0Q6Z"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-PM2BNW0Q6Z');
-</script>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>About — Banana Tech</title>
   <link rel="icon" href="logo.png">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PM2BNW0Q6Z"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-PM2BNW0Q6Z');
+  </script>
+
+  <!-- (Optional) AdSense bootstrap -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7496234429485138" crossorigin="anonymous"></script>
+
   <style>
     body { font-family: system-ui, sans-serif; background:#0b1020; color:#e6edf3; line-height:1.6; margin:0; padding:40px; }
-    a { text-decoration:none; }
+    a { text-decoration:none; color:#ffd84a; }
     .container { max-width: 800px; margin: auto; }
     .btn {
       display:inline-flex; align-items:center; gap:.6ch;
       border:none; cursor:pointer; font-weight:800; letter-spacing:.2px;
-      text-decoration:none !important;
-      background:linear-gradient(100deg,#ffd84a,#ffb300);
-      color:black; padding:11px 18px; border-radius:12px;
-      box-shadow:0 8px 26px rgba(255,216,74,.28);
+      text-decoration:none !important; background:linear-gradient(100deg,#ffd84a,#ffb300);
+      color:black; padding:11px 18px; border-radius:12px; box-shadow:0 8px 26px rgba(255,216,74,.28);
       transition:transform .2s cubic-bezier(.2,.7,.1,1), box-shadow .2s cubic-bezier(.2,.7,.1,1);
     }
     .btn:hover { transform:translateY(-1px); box-shadow:0 14px 36px rgba(255,216,74,.34); }
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7496234429485138"
-     crossorigin="anonymous"></script>
   </style>
 </head>
 <body>
   <div class="container">
     <h1>About Banana Tech</h1>
     <p>Banana Tech was created to make the Hackintosh process easier for beginners and enthusiasts alike. Our step-by-step guide walks you through setting up macOS on compatible PCs using OpenCore, with clear instructions and troubleshooting tips.</p>
-
     <p>We believe in open knowledge and accessible tools. Whether you’re building a Hackintosh for work, school, or personal projects, our goal is to help you get up and running with as little hassle as possible.</p>
-
     <p>For questions or feedback, please use our <a href="index.html#ask">contact form</a>.</p>
-
     <a class="btn" href="index.html">← Back to Home</a>
   </div>
 </body>
