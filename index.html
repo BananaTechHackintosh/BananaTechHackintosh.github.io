@@ -4,17 +4,26 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Banana Tech — Hackintosh Guide & Support</title>
+
+<!-- SEO -->
 <meta name="description" content="Step-by-step Hackintosh guide from Banana Tech. Learn how to install macOS on your PC using OpenCore, with detailed EFI setup, kext selection, troubleshooting tips, and an easy-to-read PDF.">
+
 <link rel="icon" href="logo.png">
+
 <style>
   :root{
     --bg-1:#070a13; --bg-2:#0b1020; --card:#0f172a; --text:#e6edf3; --muted:#9aa4b2;
     --line:rgba(255,255,255,.1); --accent:#ffd84a; --accent-2:#ffb300; --ring:rgba(255,216,74,.45);
     --shadow:0 10px 30px rgba(0,0,0,.35); --radius:18px; --header-h:72px;
 
-    /* Contained docs-style canvas */
-    --doc-w: 720px; --doc-h: 1020px; --doc-scale: .9;
-    --speed-1: 400ms; --speed-2: 700ms; --ease-1: cubic-bezier(.2,.7,.1,1); --ease-2: cubic-bezier(.22,1,.36,1);
+    /* Contained docs-style canvas (keeps site background visible) */
+    --doc-w: 720px; 
+    --doc-h: 1020px; 
+    --doc-scale: .9;
+
+    --speed-1: 400ms; --speed-2: 700ms; 
+    --ease-1: cubic-bezier(.2,.7,.1,1); 
+    --ease-2: cubic-bezier(.22,1,.36,1);
   }
 
   *{box-sizing:border-box} html,body{margin:0}
@@ -57,11 +66,21 @@
   /* Buttons — never underline + micro interactions */
   a, a:hover, a:focus{ text-decoration:none; }
   .btn,.pill{display:inline-flex; align-items:center; gap:.6ch; border:none; cursor:pointer; font-weight:800; letter-spacing:.2px; text-decoration:none !important; position:relative; overflow:hidden}
-  .btn{background:linear-gradient(100deg, var(--accent), var(--accent-2)); color:black; padding:11px 18px; border-radius:12px; box-shadow:0 8px 26px rgba(255,216,74,.28); transition: transform .2s var(--ease-1), box-shadow .2s var(--ease-1)}
+  .btn{
+    background:linear-gradient(100deg, var(--accent), var(--accent-2));
+    color:black; /* requested black text */
+    padding:11px 18px; border-radius:12px; 
+    box-shadow:0 8px 26px rgba(255,216,74,.28); 
+    transition: transform .2s var(--ease-1), box-shadow .2s var(--ease-1)
+  }
   .btn:hover{ transform: translateY(-1px); box-shadow:0 14px 36px rgba(255,216,74,.34) }
   .btn:active{ transform: translateY(0) scale(.98) }
   .btn:focus{ outline:3px solid var(--ring) }
-  .pill{border:1px solid rgba(229,231,235,.18); color:#e5e7eb; padding:8px 12px; border-radius:999px; transition: transform .2s var(--ease-1), background .2s}
+  .pill{
+    border:1px solid rgba(229,231,235,.18); color:#e5e7eb; 
+    padding:8px 12px; border-radius:999px; 
+    transition: transform .2s var(--ease-1), background .2s
+  }
   .pill:hover{ transform:translateY(-1px); background:rgba(255,255,255,.04) }
 
   /* Hero / sections */
@@ -95,7 +114,11 @@
 
   .form{display:grid; gap:12px}
   .form label{font-weight:600}
-  .input, textarea{background:#0f1628; border:1px solid rgba(229,231,235,.14); border-radius:12px; color:#fff; padding:12px 14px; width:100%; transition: border-color .2s, box-shadow .2s }
+  .input, textarea{
+    background:#0f1628; border:1px solid rgba(229,231,235,.14); 
+    border-radius:12px; color:#fff; padding:12px 14px; width:100%;
+    transition: border-color .2s, box-shadow .2s 
+  }
   .input:focus, textarea:focus{ outline:none; border-color:rgba(255,216,74,.35); box-shadow:0 0 0 3px var(--ring) }
   .helper{color:#9aa4b2; font-size:.9rem}
   footer{padding:28px 0; color:#9ca3af; font-size:.95rem}
@@ -108,27 +131,20 @@
   .doc-canvas{ width:100%; display:flex; justify-content:center; padding:0 20px }
   .doc-page{
     width:var(--doc-w); height:var(--doc-h);
-    background:#fff; color:#111827; border-radius:10px; border:3px solid rgba(0,0,0,.08);
+    background:#fff; color:#111827; border-radius:10px; 
+    border:3px solid rgba(0,0,0,.08);   /* subtle frame */
     box-shadow: 0 1px 2px rgba(0,0,0,.12), 0 20px 60px rgba(0,0,0,.30);
-    transform-origin:top center; transform: scale(var(--doc-scale)); overflow:hidden;
+    transform-origin:top center; transform: scale(var(--doc-scale)); 
+    overflow:hidden;
     transition: box-shadow var(--speed-2) var(--ease-2), transform var(--speed-2) var(--ease-2);
   }
   .doc-page:hover{ box-shadow: 0 1px 2px rgba(0,0,0,.12), 0 30px 90px rgba(0,0,0,.36) }
-  /* HiDPI preview: render 2x, scale to same visual size */
-  .doc-page > object{ width:200%; height:200%; border:0; transform: scale(0.5); transform-origin: top left; }
 
-  /* ---------- FULL-SCREEN READER (same UI) ---------- */
-  .fullbleed{ width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw) }
-  .section--edge{ padding:0 }
-  .pdf-frame-full{
-    width:100vw;
-    height:calc(100vh - var(--header-h));
-    border:none; background:#0f1628; display:block;
+  /* HiDPI (1080p-ish) preview: render at 2x then scale to same visual size */
+  .doc-page > object{
+    width:200%; height:200%; border:0; 
+    transform: scale(0.5); transform-origin: top left;
   }
-  .floating-pill{
-    position:fixed; right:16px; bottom:16px; z-index:60; display:none;
-  }
-  .reader-mode .floating-pill{ display:inline-flex; }
 </style>
 </head>
 <body>
@@ -143,7 +159,7 @@
         <a href="#guide">Highlights</a>
         <a href="#faq">FAQ</a>
         <a href="#ask">Ask</a>
-        <!-- Preview (pill), Full guide (btn) with same UI in new tab -->
+        <!-- Buttons swapped: Preview (pill), Open full (btn w/black text) -->
         <a class="pill" href="#docs-view">Preview Guide</a>
         <a class="btn" href="BananaTech-Hackintosh-Guide.pdf" target="_blank" rel="noopener">Open Full Guide in New Tab</a>
       </nav>
@@ -158,16 +174,19 @@
           <div class="kicker">Banana Tech</div>
           <h1>Get macOS on compatible PCs — with a friendly guide and real answers</h1>
           <p>Our step-by-step PDF walks you through creating an OpenCore installer, preparing your EFI, and installing macOS. When you hit a snag, the FAQ and question form have your back.</p>
+
           <div class="badges">
             <div class="badge"><strong>Windows Vista+</strong> required</div>
             <div class="badge">16 GB+ USB drive</div>
             <div class="badge">Stable ethernet recommended</div>
           </div>
+
           <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
             <a class="pill" href="#docs-view">Preview Guide</a>
             <a class="btn" href="BananaTech-Hackintosh-Guide.pdf" target="_blank" rel="noopener">Open Full Guide in New Tab</a>
           </div>
         </div>
+
         <div class="card">
           <h3 style="margin-top:0">What’s inside the guide</h3>
           <p class="small">A step-by-step illustrated PDF covering OpenCore installer creation, EFI setup, and troubleshooting tips for running macOS on compatible PCs.</p>
@@ -201,52 +220,51 @@
       </div>
     </section>
 
+    <!-- ASK FORM (Formspree) -->
     <section id="ask" class="section">
       <h2>Ask Banana Tech a Question</h2>
       <p class="lead">Send us your issue and we will get back with guidance.</p>
+
       <form id="question-form"
-      class="form card"
-      action="https://formspree.io/f/xkgzeaag"
-      method="POST"
-      novalidate>
-  <div>
-    <label for="name">Name</label>
-    <input id="name" name="name" class="input" type="text" placeholder="Your name" required>
-  </div>
+            class="form card"
+            action="https://formspree.io/f/xkgzeaag"  <!-- TODO: replace with your endpoint -->
+            method="POST"
+            novalidate>
+        <div>
+          <label for="name">Name</label>
+          <input id="name" name="name" class="input" type="text" placeholder="Your name" required>
+        </div>
 
-  <div>
-    <label for="email">Email</label>
-    <input id="email" name="email" class="input" type="email" placeholder="you@example.com" required>
-  </div>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="email" class="input" type="email" placeholder="you@example.com" required>
+        </div>
 
-  <div>
-    <label for="question">Your Question</label>
-    <textarea id="question" name="question" rows="5" placeholder="Describe the problem and what you tried..." required></textarea>
-    <div class="helper">Tip: include your CPU, GPU, and motherboard model.</div>
-  </div>
+        <div>
+          <label for="question">Your Question</label>
+          <textarea id="question" name="question" rows="5" placeholder="Describe the problem and what you tried..." required></textarea>
+          <div class="helper">Tip: include your CPU, GPU, and motherboard model.</div>
+        </div>
 
-  <!-- Optional: add a subject and page info -->
-  <input type="hidden" name="_subject" value="Banana Tech — New Question">
-  <input type="hidden" name="page" value="bananatechhackintosh.github.io">
+        <!-- Optional metadata -->
+        <input type="hidden" name="_subject" value="Banana Tech — New Question">
+        <input type="hidden" name="page" value="bananatechhackintosh.github.io">
 
-  <!-- Honeypot (spam trap) -->
-  <input type="text" name="_gotcha" style="display:none">
+        <!-- Honeypot (spam trap) -->
+        <input type="text" name="_gotcha" style="display:none">
 
-  <div style="display:flex;gap:10px;align-items:center">
-    <button id="submit-btn" class="btn" type="submit">Submit</button>
-    <span id="form-success" class="small" hidden>Thanks! We got your message.</span>
-    <span id="form-error" class="small" hidden style="color:#ffb3b3">Something went wrong. Please try again.</span>
-  </div>
-
-  <!-- Optional redirect if you prefer a thank-you page -->
-  <!-- <input type="hidden" name="_redirect" value="https://bananatechhackintosh.github.io/?sent=1"> -->
-</form>
-
+        <div style="display:flex;gap:10px;align-items:center">
+          <button id="submit-btn" class="btn" type="submit">Submit</button>
+          <span id="form-success" class="small" hidden>Thanks! We got your message.</span>
+          <span id="form-error" class="small" hidden style="color:#ffb3b3">Something went wrong. Please try again.</span>
+        </div>
+      </form>
     </section>
+
     <hr>
   </main>
 
-  <!-- CONTAINED DOCS-STYLE PREVIEW -->
+  <!-- SINGLE, CONTAINED DOCS-STYLE PREVIEW -->
   <section id="docs-view" class="docs-bg" aria-label="Guide (docs-style)">
     <div class="doc-canvas">
       <div class="doc-page" role="region" aria-label="Guide page">
@@ -272,18 +290,13 @@
       });
     });
 
-    // Nav shade on scroll + dynamic header height
-    const header = document.getElementById('site-header');
+    // Nav shade on scroll
     const onScroll = () => {
       const y = window.scrollY || document.documentElement.scrollTop;
       document.querySelector('.header').classList.toggle('scrolled', y > 6);
     };
-    window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
-    function setHeaderHeight(){
-      const h = header?.offsetHeight || 72;
-      document.documentElement.style.setProperty('--header-h', h + 'px');
-    }
-    setHeaderHeight(); window.addEventListener('resize', setHeaderHeight);
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll();
 
     // Keep background showing around doc; cap visual size
     function layoutDocCanvas(){
@@ -293,73 +306,85 @@
       const scale = Math.min(0.9, maxW / pageW); // same visual size cap
       document.documentElement.style.setProperty('--doc-scale', scale.toString());
     }
-    layoutDocCanvas(); window.addEventListener('resize', layoutDocCanvas);
-
-    // Reader mode (?mode=reader) — keeps UI and shows full-screen section
-    function applyReaderModeIfRequested(){
-      const params = new URLSearchParams(location.search);
-      if(params.get('mode') === 'reader'){
-        document.body.classList.add('reader-mode');
-        document.getElementById('full-guide')?.scrollIntoView({behavior:'instant'});
-        document.getElementById('backTop')?.classList.add('show');
-      }
-    }
-    applyReaderModeIfRequested();
+    layoutDocCanvas();
+    window.addEventListener('resize', layoutDocCanvas);
 
     // FAQ accordion
     document.querySelectorAll('.faq-item').forEach(it=>{
       it.querySelector('.faq-q').addEventListener('click',()=>it.classList.toggle('open'));
     });
 
-    // Form -> mailto
-    <script>
-(function () {
-  const form = document.getElementById('question-form');
-  if (!form) return;
+    // ---------- Formspree submit with bullet-proof email validation ----------
+    (function () {
+      const form = document.getElementById('question-form');
+      if (!form) return;
 
-  const btn = document.getElementById('submit-btn');
-  const ok  = document.getElementById('form-success');
-  const err = document.getElementById('form-error');
+      const btn = document.getElementById('submit-btn');
+      const ok  = document.getElementById('form-success');
+      const err = document.getElementById('form-error');
+      const emailField = document.getElementById('email');
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    ok.hidden = true; err.hidden = true;
+      // Slightly stricter email regex than the browser's
+      const emailRe = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
 
-    // Basic HTML5 validation
-    if (!form.checkValidity()) { form.reportValidity(); return; }
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();            // never allow native submit
+        ok.hidden = true; 
+        err.hidden = true;
 
-    btn.disabled = true; btn.textContent = 'Sending…';
+        // 1) HTML5 validation (catches required fields)
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;                      // STOP: do not reach try { ... }
+        }
 
-    try {
-      const res = await fetch(form.action, {
-        method: 'POST',
-        headers: { 'Accept': 'application/json' },
-        body: new FormData(form)
+        // 2) Explicit email checks BEFORE any network call
+        const value = (emailField?.value || '').trim();
+
+        if (!value) {
+          emailField.setCustomValidity('Please enter your email.');
+          emailField.reportValidity();
+          emailField.setCustomValidity('');
+          return;                      // STOP
+        }
+
+        if (!emailRe.test(value) || !emailField.checkValidity()) {
+          emailField.setCustomValidity('Please enter a valid email address (name@example.com).');
+          emailField.reportValidity();
+          emailField.setCustomValidity('');
+          return;                      // STOP
+        }
+
+        // Passed validation — proceed to send
+        btn.disabled = true; 
+        btn.textContent = 'Sending…';
+
+        try {
+          const res = await fetch(form.action, {
+            method: 'POST',
+            headers: { 'Accept': 'application/json' },
+            body: new FormData(form)
+          });
+
+          if (res.ok) {
+            form.reset();
+            ok.hidden = false;
+          } else {
+            const data = await res.json().catch(()=>null);
+            err.textContent = (data && data.errors && data.errors[0] && data.errors[0].message)
+              ? data.errors[0].message
+              : 'Something went wrong. Please try again.';
+            err.hidden = false;
+          }
+        } catch {
+          err.textContent = 'Network error. Please check your connection and try again.';
+          err.hidden = false;
+        } finally {
+          btn.disabled = false; 
+          btn.textContent = 'Submit';
+        }
       });
-
-      if (res.ok) {
-        form.reset();
-        ok.hidden = false;
-      } else {
-        // Try to read Formspree errors
-        const data = await res.json().catch(()=>null);
-        err.textContent = (data && data.errors && data.errors[0] && data.errors[0].message)
-          ? data.errors[0].message
-          : 'Something went wrong. Please try again.';
-        err.hidden = false;
-      }
-    } catch (e2) {
-      err.textContent = 'Network error. Please check your connection and try again.';
-      err.hidden = false;
-    } finally {
-      btn.disabled = false; btn.textContent = 'Submit';
-    }
-  });
-})();
-</script>
-
-      });
-    }
+    })();
   </script>
 </body>
 </html>
