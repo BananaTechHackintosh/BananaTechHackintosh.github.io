@@ -7,9 +7,18 @@
   <link rel="icon" href="logo.png">
   <style>
     body { font-family: system-ui, sans-serif; background:#0b1020; color:#e6edf3; line-height:1.6; margin:0; padding:40px; }
-    a { color:#ffd84a; text-decoration:none; }
-    a:hover { text-decoration:underline; }
+    a { text-decoration:none; }
     .container { max-width: 800px; margin: auto; }
+    .btn {
+      display:inline-flex; align-items:center; gap:.6ch;
+      border:none; cursor:pointer; font-weight:800; letter-spacing:.2px;
+      text-decoration:none !important;
+      background:linear-gradient(100deg,#ffd84a,#ffb300);
+      color:black; padding:11px 18px; border-radius:12px;
+      box-shadow:0 8px 26px rgba(255,216,74,.28);
+      transition:transform .2s cubic-bezier(.2,.7,.1,1), box-shadow .2s cubic-bezier(.2,.7,.1,1);
+    }
+    .btn:hover { transform:translateY(-1px); box-shadow:0 14px 36px rgba(255,216,74,.34); }
   </style>
 </head>
 <body>
@@ -20,6 +29,8 @@
     <p>We believe in open knowledge and accessible tools. Whether you’re building a Hackintosh for work, school, or personal projects, our goal is to help you get up and running with as little hassle as possible.</p>
 
     <p>For questions or feedback, please use our <a href="index.html#ask">contact form</a>.</p>
+
+    <a class="btn" href="index.html">← Back to Home</a>
   </div>
 </body>
 </html>
