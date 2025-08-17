@@ -156,10 +156,14 @@
     .feature h3{margin:2px 0 6px; font-size:1.05rem}
     .feature p{margin:0; color:#cbd5e1}
 
+    /* ===== FAQ styles (upgraded) ===== */
+    .faq-controls{display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:12px}
+    .faq-controls .spacer{flex:1}
     .faq-item{border:1px solid rgba(229,231,235,.12); border-radius:14px; padding:14px}
     .faq-q{display:flex; align-items:center; justify-content:space-between; gap:10px; cursor:pointer}
     .faq-q h3{margin:0; font-size:1rem}
     .faq-a{max-height:0; overflow:hidden; transition:max-height .35s var(--ease-1), opacity .35s var(--ease-1); opacity:.6}
+    .faq-item.open .faq-a{opacity:1}
 
     .form{display:grid; gap:12px}
     .form label{font-weight:600}
@@ -301,16 +305,50 @@
       </div>
     </section>
 
+    <!-- ===== UPGRADED FAQ (with search + expand/collapse + smooth height) ===== -->
     <section id="faq" class="section wave reveal">
       <h2>FAQ</h2>
       <p class="lead">Answers to common questions from the guide and our community.</p>
-      <div class="grid">
-        <div class="faq-item"><div class="faq-q"><h3>What do I need before starting?</h3><span>＋</span></div><div class="faq-a"><p>Windows Vista or newer, 16 GB+ USB, reliable internet, and ideally ethernet for the installer.</p></div></div>
-        <div class="faq-item"><div class="faq-q"><h3>Which macOS version can I run?</h3><span>＋</span></div><div class="faq-a"><p>Run OpCore Simplify and pick the highest “Supported macOS Version.”</p></div></div>
-        <div class="faq-item"><div class="faq-q"><h3>Something shows unsupported</h3><span>＋</span></div><div class="faq-a"><p>That machine may not be ideal. You can try alternate kexts but expect instability.</p></div></div>
-        <div class="faq-item"><div class="faq-q"><h3>Do I need Wi-Fi?</h3><span>＋</span></div><div class="faq-a"><p>Use ethernet during install. Wi-Fi depends on hardware + kexts; enable after macOS is installed.</p></div></div>
-        <div class="faq-item"><div class="faq-q"><h3>Reuse the USB later?</h3><span>＋</span></div><div class="faq-a"><p>Yes. Reformat it after setup, but back up your working EFI first.</p></div></div>
-        <div class="faq-item"><div class="faq-q"><h3>Deeper help?</h3><span>＋</span></div><div class="faq-a"><p>See Dortania’s OpenCore Install Guide and your motherboard community resources.</p></div></div>
+
+      <!-- Controls -->
+      <div class="faq-controls card">
+        <input id="faq-search" class="input" type="search" placeholder="Search FAQ (e.g., Wi-Fi, USB, EFI)…" style="max-width:380px">
+        <span class="spacer"></span>
+        <button id="faq-expand" class="pill" type="button" aria-controls="faq-list">Expand all</button>
+        <button id="faq-collapse" class="pill" type="button" aria-controls="faq-list">Collapse all</button>
+      </div>
+
+      <!-- List -->
+      <div id="faq-list" class="grid" aria-live="polite">
+        <div class="faq-item" data-keywords="prerequisites usb ethernet windows vista requirements">
+          <div class="faq-q"><h3>What do I need before starting?</h3><span aria-hidden="true">＋</span></div>
+          <div class="faq-a"><p>Windows Vista or newer, 16 GB+ USB, reliable internet, and ideally ethernet for the installer.</p></div>
+        </div>
+
+        <div class="faq-item" data-keywords="compatibility supported macos version opencore simplify hardware">
+          <div class="faq-q"><h3>Which macOS version can I run?</h3><span aria-hidden="true">＋</span></div>
+          <div class="faq-a"><p>Run OpCore Simplify and choose the highest “Supported macOS Version” it reports for your hardware.</p></div>
+        </div>
+
+        <div class="faq-item" data-keywords="unsupported hardware troubleshoot stability">
+          <div class="faq-q"><h3>Something shows unsupported</h3><span aria-hidden="true">＋</span></div>
+          <div class="faq-a"><p>That machine may not be ideal. You can try alternate kexts, but expect possible instability.</p></div>
+        </div>
+
+        <div class="faq-item" data-keywords="wifi ethernet network kexts internet">
+          <div class="faq-q"><h3>Do I need Wi-Fi?</h3><span aria-hidden="true">＋</span></div>
+          <div class="faq-a"><p>Use ethernet during install. Wi-Fi depends on your chipset and kexts; enable it after macOS is installed.</p></div>
+        </div>
+
+        <div class="faq-item" data-keywords="usb reuse reformat installer drive backup efi">
+          <div class="faq-q"><h3>Can I reuse the USB later?</h3><span aria-hidden="true">＋</span></div>
+          <div class="faq-a"><p>Yes — reformat it after setup. Be sure to back up your working EFI first.</p></div>
+        </div>
+
+        <div class="faq-item" data-keywords="help guide dortania motherboard resources">
+          <div class="faq-q"><h3>Where can I get deeper help?</h3><span aria-hidden="true">＋</span></div>
+          <div class="faq-a"><p>See Dortania’s OpenCore Install Guide and your motherboard’s community resources.</p></div>
+        </div>
       </div>
     </section>
 
@@ -412,11 +450,10 @@
       });
     });
 
-    // Nav shade on scroll
+    // Nav shade on scroll + back-to-top
     const onScroll = () => {
       const y = window.scrollY || document.documentElement.scrollTop;
       document.querySelector('.header').classList.toggle('scrolled', y > 6);
-      // Back to top show/hide
       document.getElementById('toTop').classList.toggle('show', y > 600);
     };
     window.addEventListener('scroll', onScroll, {passive:true});
@@ -433,15 +470,90 @@
     layoutDocCanvas();
     window.addEventListener('resize', layoutDocCanvas);
 
-    // FAQ accordion with height animation
-    document.querySelectorAll('.faq-item').forEach(it=>{
-      const btn = it.querySelector('.faq-q');
-      const ans = it.querySelector('.faq-a');
-      btn.addEventListener('click', ()=>{
-        const open = it.classList.toggle('open');
-        ans.style.maxHeight = open ? ans.scrollHeight+'px' : '0px';
+    /* ===== UPGRADED FAQ JS ===== */
+    (function(){
+      const list = document.getElementById('faq-list');
+      if(!list) return;
+
+      const inputSearch = document.getElementById('faq-search');
+      const btnExpand   = document.getElementById('faq-expand');
+      const btnCollapse = document.getElementById('faq-collapse');
+
+      // Toggle + smooth height
+      function setHeight(item){
+        const a = item.querySelector('.faq-a');
+        if(!a) return;
+        if(item.classList.contains('open')){
+          a.style.maxHeight = '0px';
+          requestAnimationFrame(()=>{ a.style.maxHeight = a.scrollHeight + 'px'; });
+        } else {
+          a.style.maxHeight = '0px';
+        }
+      }
+
+      function wire(item){
+        const q = item.querySelector('.faq-q');
+        const a = item.querySelector('.faq-a');
+        const icon = q && q.querySelector('span[aria-hidden="true"]');
+
+        if(q){
+          q.addEventListener('click', ()=>{
+            item.classList.toggle('open');
+            if(icon) icon.textContent = item.classList.contains('open') ? '–' : '＋';
+            setHeight(item);
+          });
+          q.addEventListener('keydown', (e)=>{ if(e.key===' '){ e.preventDefault(); q.click(); }});
+          q.style.cursor='pointer';
+        }
+        if(a){
+          // If inner content changes size (images etc.), re-measure
+          const mo = new MutationObserver(()=>{ if(item.classList.contains('open')) setHeight(item); });
+          mo.observe(a, {childList:true, subtree:true});
+        }
+        // initial
+        item.classList.remove('open');
+        setHeight(item);
+      }
+
+      const items = Array.from(list.querySelectorAll('.faq-item'));
+      items.forEach(wire);
+
+      function setAll(open){
+        items.forEach(it=>{
+          it.classList.toggle('open', !!open);
+          const icon = it.querySelector('.faq-q span[aria-hidden="true"]');
+          if(icon) icon.textContent = it.classList.contains('open') ? '–' : '＋';
+          setHeight(it);
+        });
+      }
+      if(btnExpand)   btnExpand.addEventListener('click', ()=>setAll(true));
+      if(btnCollapse) btnCollapse.addEventListener('click', ()=>setAll(false));
+
+      function normalize(s){ return (s||'').toLowerCase(); }
+      function filter(){
+        const q = normalize(inputSearch && inputSearch.value ? inputSearch.value : '');
+        let shown = 0, last = null;
+        items.forEach(it=>{
+          const qEl = it.querySelector('.faq-q'); 
+          const aEl = it.querySelector('.faq-a'); 
+          const textQ = normalize(qEl ? qEl.textContent : '');
+          const textA = normalize(aEl ? aEl.textContent : '');
+          const keys  = normalize(it.getAttribute('data-keywords'));
+          const match = !q || textQ.includes(q) || textA.includes(q) || keys.includes(q);
+          it.style.display = match ? '' : 'none';
+          if(match){ shown++; last = it; }
+          if(!q){ it.classList.remove('open'); setHeight(it); }
+        });
+        if(q && shown===1 && last){ last.classList.add('open'); setHeight(last); }
+      }
+      if(inputSearch){
+        inputSearch.addEventListener('input', filter);
+        inputSearch.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ inputSearch.value=''; filter(); }});
+      }
+      window.addEventListener('resize', ()=>{
+        items.filter(it=>it.classList.contains('open')).forEach(setHeight);
       });
-    });
+    })();
 
     // Magnetic buttons (all .btn)
     document.querySelectorAll('.btn').forEach(btn=>{
@@ -484,7 +596,7 @@
     }, {threshold:.5});
     sections.forEach(id=>{ const el=document.querySelector(id); if(el) spy.observe(el); });
 
-    // Formspree submit with validation + toast + confetti
+    // Formspree submit with validation + toast + confetti (unchanged)
     (function () {
       const form = document.getElementById('question-form');
       if (!form) return;
