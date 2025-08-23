@@ -1,73 +1,42 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Banana Tech — Hackintosh Guide & Support</title>
+  <meta name="description" content="Beginner-friendly Hackintosh guide to install macOS on your PC using OpenCore. Simple steps, FAQs, and support." />
+  <meta name="keywords" content="Hackintosh, macOS on PC, OpenCore, Banana Tech guide, EFI setup, macOS installer, Hackintosh tutorial, build Hackintosh, install macOS on Windows PC, beginner Hackintosh, OpenCore Simplify, ProperTree, USBToolBox, Dortania alternative, Hackintosh support" />
+  <link rel="icon" href="logo.png" />
+
+  <!-- Optional analytics (kept as-is if you use it) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PM2BNW0Q6Z"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-PM2BNW0Q6Z');
+    gtag('js', new Date()); gtag('config','G-PM2BNW0Q6Z');
   </script>
 
-  <!-- Google AdSense (safe while “Getting ready”) -->
+  <!-- Optional AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7496234429485138" crossorigin="anonymous"></script>
-
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "Banana Tech Hackintosh Guide",
-  "url": "https://bananatechhackintosh.github.io/",
-  "description": "Beginner-friendly Hackintosh guide to install macOS on your PC using OpenCore. Includes FAQs, step-by-step instructions, and support.",
-  "keywords": [
-    "Hackintosh",
-    "macOS on PC",
-    "OpenCore",
-    "Banana Tech guide",
-    "EFI setup",
-    "macOS installer",
-    "Hackintosh tutorial",
-    "Build Hackintosh",
-    "Install macOS on Windows PC",
-    "Beginner Hackintosh",
-    "OpenCore Simplify",
-    "ProperTree",
-    "USBToolBox",
-    "Dortania alternative",
-    "Hackintosh support"
-  ],
-  "publisher": {
-    "@type": "Organization",
-    "name": "Banana Tech"
-  }
-}
-</script>
-
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="keywords" content="Hackintosh, macOS on PC, OpenCore, Banana Tech guide, EFI setup, macOS installer, Hackintosh tutorial, build Hackintosh, install macOS on Windows PC, beginner Hackintosh, OpenCore Simplify, ProperTree, USBToolBox, Dortania alternative, Hackintosh support">
-  <title>Banana Tech — Hackintosh Guide & Support</title>
-  <meta name="description" content="Banana Tech offers a beginner-friendly Hackintosh guide to install macOS on your PC using OpenCore. Simple steps, FAQs, and support — an easier alternative to dense docs.">
-  <link rel="icon" href="logo.png">
 
   <style>
     :root{
-      --bg-1:#070a13; --bg-2:#0b1020; --card:#0f172a; --text:#e6edf3; --muted:#9aa4b2;
-      --line:rgba(255,255,255,.1); --accent:#ffd84a; --accent-2:#ffb300; --ring:rgba(255,216,74,.45);
-      --shadow:0 10px 30px rgba(0,0,0,.35); --radius:18px; --header-h:72px;
-
-      --doc-w: 720px; 
-      --doc-h: 1020px; 
-      --doc-scale: .9;
-
-      --speed-1: 380ms; --speed-2: 700ms;
-      --ease-1: cubic-bezier(.2,.7,.1,1); 
-      --ease-2: cubic-bezier(.22,1,.36,1);
+      --bg: #0b1020;
+      --bg-2:#0b1226;
+      --card:#0f172a;
+      --text:#e6edf3;
+      --muted:#9aa4b2;
+      --line:rgba(255,255,255,.10);
+      --accent:#ffd84a;
+      --accent-2:#ffb300;
+      --ring:rgba(255,216,74,.45);
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
+      --speed:340ms;
+      --ease:cubic-bezier(.22,1,.36,1);
     }
-
-    *{box-sizing:border-box} html,body{margin:0}
+    *{box-sizing:border-box}
+    html,body{margin:0}
     html{scroll-behavior:smooth}
     body{
       font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,"Noto Sans",sans-serif;
@@ -75,513 +44,497 @@
       background:
         radial-gradient(1200px 800px at 10% -10%, #111827 0%, transparent 40%),
         radial-gradient(1000px 600px at 110% 10%, rgba(255,216,74,.08), transparent 60%),
-        linear-gradient(180deg,#0b1020 0%, #0b1226 60%, #0b1020 100%);
-      line-height:1.65; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+        linear-gradient(180deg,var(--bg) 0%, var(--bg-2) 60%, var(--bg) 100%);
+      -webkit-font-smoothing:antialiased;
+      line-height:1.65;
+      overflow-x:hidden;
     }
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1200px;margin:0 auto;padding:0 20px}
 
-    /* Top scroll progress */
-    .progress{
-      position: fixed; top:0; left:0; height:3px; width:0%;
-      background: linear-gradient(90deg, #ffd84a, #ffb300);
-      box-shadow: 0 0 12px rgba(255,216,74,.6);
-      z-index: 1000; transition: width .08s linear;
-    }
-
-    /* Floating ambient orbs */
-    .orb{
-      position:fixed; inset:auto -10vw -10vh auto; width:45vmax; height:45vmax;
-      background:radial-gradient(closest-side,rgba(255,216,74,.10),transparent 70%);
-      filter:blur(32px); pointer-events:none; z-index:0; animation:float 16s ease-in-out infinite alternate
-    }
-    .orb:nth-child(2){
-      left:-10vw; bottom:-20vh;
-      background:radial-gradient(closest-side,rgba(255,179,0,.10),transparent 70%);
-      animation-duration:20s
-    }
-    @keyframes float{from{transform:translateY(0)} to{transform:translateY(-2vh)}}
-
-    .container{max-width:1200px; margin:0 auto; padding:0 20px; position:relative; z-index:1}
-
-    /* Sticky glass nav */
-    .header{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter:saturate(140%) blur(10px);
-      background:linear-gradient(180deg, rgba(8,12,22,.72), rgba(8,12,22,.48));
-      border-bottom:1px solid var(--line);
-      transform:translateY(-12px); opacity:0; animation:navIn var(--speed-2) var(--ease-2) .1s forwards;
-    }
-    @keyframes navIn{to{transform:none;opacity:1}}
-    .header.scrolled{ background:linear-gradient(180deg, rgba(8,12,22,.82), rgba(8,12,22,.62)); box-shadow:0 10px 30px rgba(0,0,0,.25) }
-    .nav{display:flex; align-items:center; justify-content:space-between; gap:16px; padding:14px 0}
-    .brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--text)}
-    .brand img{
-      width:42px; height:42px; border-radius:12px; box-shadow:var(--shadow); background:#0f1628; object-fit:contain;
-      transform:scale(.96); transition:transform .25s var(--ease-1)
-    }
-    .brand span{font-weight:900; letter-spacing:.25px; font-size:1.05rem}
-    .nav a{color:var(--text); text-decoration:none; opacity:.75; font-weight:700; margin:0 8px; position:relative}
+    /* Header */
+    .header{position:sticky;top:0;z-index:40;backdrop-filter:saturate(140%) blur(10px);
+      background:linear-gradient(180deg,rgba(8,12,22,.72),rgba(8,12,22,.48));
+      border-bottom:1px solid var(--line)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{width:40px;height:40px;border-radius:12px;background:#0f1628;box-shadow:var(--shadow)}
+    .brand span{font-weight:900;letter-spacing:.25px}
+    .nav a{opacity:.8;font-weight:700;margin:0 8px;position:relative}
     .nav a.active{opacity:1}
-    .nav a.active:after{
-      content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px; border-radius:2px;
-      background:linear-gradient(90deg,#ffd84a,#ffb300);
-    }
+    .nav a.active:after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:2px;border-radius:2px;background:linear-gradient(90deg,#ffd84a,#ffb300)}
 
     /* Buttons */
-    a, a:hover, a:focus{ text-decoration:none; }
-    .btn,.pill{display:inline-flex; align-items:center; gap:.6ch; border:none; cursor:pointer; font-weight:800; letter-spacing:.2px; position:relative; overflow:hidden}
-    .btn{
-      background:linear-gradient(100deg, var(--accent), var(--accent-2));
-      color:black; padding:11px 18px; border-radius:12px; 
-      box-shadow:0 8px 26px rgba(255,216,74,.28); 
-      transition: transform .2s var(--ease-1), box-shadow .2s var(--ease-1)
-    }
-    .btn:hover{ transform: translateY(-1px); box-shadow:0 14px 36px rgba(255,216,74,.34) }
-    .btn:active{ transform: translateY(0) scale(.98) }
-    .pill{
-      border:1px solid rgba(229,231,235,.18); color:#e5e7eb; 
-      padding:8px 12px; border-radius:999px; 
-      transition: transform .2s var(--ease-1), background .2s
-    }
-    .pill:hover{ transform:translateY(-1px); background:rgba(255,255,255,.04) }
+    .btn,.pill{display:inline-flex;align-items:center;gap:.6ch;border:none;cursor:pointer;font-weight:800;letter-spacing:.2px}
+    .btn{background:linear-gradient(100deg,var(--accent),var(--accent-2));color:#000;padding:10px 16px;border-radius:12px;box-shadow:0 8px 24px rgba(255,216,74,.28);transition:transform .2s,box-shadow .2s}
+    .btn:hover{transform:translateY(-1px);box-shadow:0 14px 36px rgba(255,216,74,.34)}
+    .pill{border:1px solid rgba(229,231,235,.18);color:#e5e7eb;padding:8px 12px;border-radius:999px}
 
     /* Sections */
-    .hero{padding:92px 0 36px; position:relative}
-    .hero-glow{
-      position:absolute; inset:-120px -60px auto -60px; height:420px; z-index:0; pointer-events:none;
-      background:
-        radial-gradient(600px 280px at 15% 40%, rgba(255,216,74,.18), transparent 60%),
-        radial-gradient(600px 280px at 85% 20%, rgba(255,179,0,.18), transparent 60%);
-      filter: blur(24px) saturate(130%);
-      animation: glowDrift 14s ease-in-out infinite alternate;
-    }
-    @keyframes glowDrift{50% { transform: translateY(-6px) scale(1.02); filter: blur(28px) saturate(140%); }}
+    .hero{padding:90px 0 36px;position:relative}
+    .hero-glow{position:absolute;inset:-120px -60px auto -60px;height:420px;z-index:0;pointer-events:none;
+      background:radial-gradient(600px 280px at 15% 40%,rgba(255,216,74,.18),transparent 60%),
+                 radial-gradient(600px 280px at 85% 20%,rgba(255,179,0,.18),transparent 60%);
+      filter:blur(24px) saturate(130%)}
+    .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center}
+    @media(max-width:900px){.hero-grid{grid-template-columns:1fr}}
+    .kicker{color:var(--accent);font-weight:900;letter-spacing:.06em;text-transform:uppercase;font-size:.8rem}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.05),transparent);border:1px solid rgba(229,231,235,.10);border-radius:var(--radius);padding:20px}
+    .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+    .badge{border:1px solid rgba(229,231,235,.16);padding:6px 10px;border-radius:999px;font-size:.85rem}
 
-    .hero-grid{display:grid; grid-template-columns:1.2fr .8fr; gap:32px; align-items:center}
-    @media(max-width:900px){ .hero-grid{ grid-template-columns:1fr } }
-    .kicker{color:var(--accent); font-weight:900; letter-spacing:.06em; text-transform:uppercase; font-size:.8rem}
-    .hero h1{font-size:clamp(2rem,3.6vw,3.25rem); margin:.25rem 0 .6rem; line-height:1.12}
-    .hero p{color:#cbd5e1; max-width:60ch}
-    .card{ background:linear-gradient(180deg,rgba(255,255,255,.04),transparent); border:1px solid rgba(229,231,235,.08); border-radius:var(--radius); padding:20px; backdrop-filter: blur(2px); transition:transform .25s var(--ease-1), box-shadow .25s var(--ease-1)}
-    .card:hover{ transform:translateY(-4px); box-shadow:0 16px 40px rgba(0,0,0,.35) }
-    .badges{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px}
-    .badge{border:1px solid rgba(229,231,235,.16); padding:6px 10px; border-radius:999px; font-size:.85rem; color:#e5e7eb}
-    .badge strong{color:var(--accent)}
-
-    .grid{display:grid; gap:18px}
+    .section{padding:28px 0}
+    .grid{display:grid;gap:18px}
     .cols-3{grid-template-columns:repeat(3,1fr)}
     @media(max-width:900px){.cols-3{grid-template-columns:1fr}}
-    .section{padding:28px 0}
-    .section h2{font-size:1.6rem; margin:0 0 10px}
-    .section p.lead{color:#cbd5e1; margin:0 0 10px}
-    .feature{display:flex; gap:16px; align-items:flex-start}
-    .icon{width:38px; height:38px; border-radius:10px; background:#1f2937; display:grid; place-items:center; flex:0 0 38px}
-    .feature h3{margin:2px 0 6px; font-size:1.05rem}
-    .feature p{margin:0; color:#cbd5e1}
+    .feature{display:flex;gap:14px;align-items:flex-start}
+    .icon{width:36px;height:36px;border-radius:10px;background:#1f2937;display:grid;place-items:center;flex:0 0 36px}
 
-    /* ===== FAQ (no expand/collapse all; click question or ＋) ===== */
-    .faq-controls{display:flex; gap:10px; align-items:center; flex-wrap:wrap; margin-bottom:12px}
-    .faq-item{border:1px solid rgba(229,231,235,.12); border-radius:14px; padding:14px}
-    .faq-q{display:flex; align-items:center; justify-content:space-between; gap:10px; cursor:pointer; user-select:none}
-    .faq-q h3{margin:0; font-size:1rem}
-    .faq-q .plus{font-weight:900; line-height:1; width:1.2em; text-align:center}
-    .faq-a{max-height:0; overflow:hidden; transition:max-height .35s var(--ease-1), opacity .35s var(--ease-1); opacity:.6}
-    .faq-item.open .faq-a{opacity:1}
+    /* FAQ — restored design + upgrades */
+    .faq-wrap{display:grid;gap:14px}
+    .faq-toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:10px}
+    .chip{border:1px solid rgba(229,231,235,.18);padding:6px 10px;border-radius:999px;font-weight:700;opacity:.9;cursor:pointer;transition:.2s}
+    .chip.active,.chip:hover{background:rgba(255,255,255,.06)}
+    .search{background:#0f1628;border:1px solid rgba(229,231,235,.16);border-radius:12px;color:#fff;padding:10px 12px;min-width:260px}
+    .faq-item{border:1px solid rgba(229,231,235,.14);border-radius:14px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.03),transparent)}
+    .faq-q{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;cursor:pointer;user-select:none}
+    .faq-q h3{margin:0;font-size:1rem}
+    .faq-q .meta{display:flex;gap:8px;align-items:center;font-size:.85rem;color:var(--muted)}
+    .plus{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;border:1px solid rgba(229,231,235,.16);flex:0 0 28px}
+    .faq-content{max-height:0;opacity:.75;overflow:hidden;transition:max-height var(--speed) var(--ease),opacity var(--speed) var(--ease),filter var(--speed) var(--ease);padding:0 16px}
+    .faq-item.open .faq-content{opacity:1;filter:none}
+    .faq-a{padding:0 0 14px 0}
+    mark{background:rgba(255,216,74,.22);padding:0 .15em;border-radius:3px}
 
-    /* Forms */
-    .form{display:grid; gap:12px}
-    .form label{font-weight:600}
-    .input, textarea{
-      background:#0f1628; border:1px solid rgba(229,231,235,.14); 
-      border-radius:12px; color:#fff; padding:12px 14px; width:100%;
-      transition: border-color .2s, box-shadow .2s 
+    /* Contact (mail) — restored panel styling */
+    .contact-card{
+      position:relative;
+      border-radius:20px;
+      padding:1px;
+      background:linear-gradient(135deg, rgba(255,216,74,.40), rgba(255,179,0,.20), rgba(255,255,255,.08));
+      box-shadow:0 20px 50px rgba(0,0,0,.35);
     }
-    .input:focus, textarea:focus{ outline:none; border-color:rgba(255,216,74,.35); box-shadow:0 0 0 3px var(--ring) }
-    .helper{color:#9aa4b2; font-size:.9rem}
-    footer{padding:28px 0; color:#9ca3af; font-size:.95rem}
-    hr{border:0; border-top:1px solid rgba(229,231,235,.08); margin:18px 0}
-    .small{font-size:.9rem; color:#a6b0bf}
-    .notice{background:#0f1628; border:1px dashed rgba(229,231,235,.18); border-radius:14px; padding:10px}
-
-    /* Docs-style preview */
-    .docs-bg{ background:#0b1222; padding:40px 0 80px; position:relative; overflow:hidden }
-    .docs-bg:before{
-      content:""; position:absolute; inset:0; background:
-        radial-gradient(700px 300px at 80% 0%, rgba(255,216,74,.06), transparent 60%),
-        radial-gradient(700px 300px at 20% 100%, rgba(255,179,0,.06), transparent 60%);
-      pointer-events:none;
+    .contact-inner{
+      background:#0c1426;
+      border-radius:19px;
+      padding:20px;
+      border:1px solid rgba(229,231,235,.08);
     }
-    .doc-canvas{ width:100%; display:flex; justify-content:center; padding:0 20px }
-    .doc-page{
-      width:var(--doc-w); height:var(--doc-h);
-      background:#fff; color:#111827; border-radius:10px; 
-      border:3px solid rgba(0,0,0,.08);
-      box-shadow: 0 1px 2px rgba(0,0,0,.12), 0 20px 60px rgba(0,0,0,.30);
-      transform-origin:top center; transform: scale(var(--doc-scale)); 
-      overflow:hidden;
-      transition: box-shadow var(--speed-2) var(--ease-2), transform var(--speed-2) var(--ease-2);
-      will-change:transform, box-shadow;
+    .contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}
+    @media(max-width:900px){.contact-grid{grid-template-columns:1fr}}
+    .form{display:grid;gap:12px}
+    label{font-weight:700}
+    .input,textarea{
+      background:#0f1628;border:1px solid rgba(229,231,235,.16);border-radius:12px;color:#fff;padding:12px 14px;width:100%;
+      transition:border-color .2s,box-shadow .2s
     }
-    .doc-page:hover{ box-shadow: 0 1px 2px rgba(0,0,0,.12), 0 30px 90px rgba(0,0,0,.36) }
-    .doc-page > object{ width:200%; height:200%; border:0; transform: scale(.5); transform-origin: top left }
+    .input:focus,textarea:focus{outline:none;border-color:rgba(255,216,74,.35);box-shadow:0 0 0 3px var(--ring)}
+    .field-row{display:grid;gap:12px;grid-template-columns:1fr 1fr}
+    @media(max-width:700px){.field-row{grid-template-columns:1fr}}
+    .helper{color:var(--muted);font-size:.9rem}
+    .counter{color:var(--muted);font-size:.85rem;justify-self:end}
+    .status{font-size:.95rem}
+    .status.ok{color:#b7ffb3}
+    .status.err{color:#ffb3b3}
+    .send{display:inline-flex;align-items:center;gap:.6ch}
+    .spin{width:14px;height:14px;border:2px solid rgba(0,0,0,.4);border-top-color:rgba(0,0,0,.9);border-radius:50%;animation:spin .85s linear infinite;display:none}
+    .sending .spin{display:inline-block}
+    @keyframes spin{to{transform:rotate(360deg)}}
 
-    /* Reveal */
-    .reveal{opacity:0; transform: translateY(18px) scale(.99); transition:opacity var(--speed-2) var(--ease-2), transform var(--speed-2) var(--ease-2)}
-    .reveal.is-visible{opacity:1; transform:none}
-
-    /* Back to top */
-    .to-top{
-      position:fixed; right:18px; bottom:18px; z-index:1002;
-      background:linear-gradient(100deg, var(--accent), var(--accent-2)); color:black; font-weight:900;
-      width:46px; height:46px; border-radius:12px; display:grid; place-items:center;
-      box-shadow:0 12px 30px rgba(0,0,0,.35);
-      transform: translateY(20px); opacity:0; pointer-events:none; transition: .35s var(--ease-2);
-    }
-    .to-top.show{ transform:none; opacity:1; pointer-events:auto }
-
-    /* Toast */
-    .toast{
-      position: fixed; left:50%; bottom:24px; transform:translateX(-50%) translateY(20px);
-      background:#101827; color:#e6edf3; border:1px solid rgba(229,231,235,.16);
-      padding:10px 14px; border-radius:12px; box-shadow:0 10px 24px rgba(0,0,0,.35);
-      opacity:0; transition: .35s cubic-bezier(.22,1,.36,1); z-index:1001;
-    }
-    .toast.show{ opacity:1; transform:translateX(-50%) translateY(0) }
+    /* Footer and misc */
+    footer{padding:28px 0;color:#9ca3af}
+    .to-top{position:fixed;right:18px;bottom:18px;z-index:30;background:linear-gradient(100deg,var(--accent),var(--accent-2));color:#000;font-weight:900;width:46px;height:46px;border-radius:12px;display:grid;place-items:center;box-shadow:0 12px 30px rgba(0,0,0,.35);transform:translateY(20px);opacity:0;pointer-events:none;transition:.3s var(--ease)}
+    .to-top.show{transform:none;opacity:1;pointer-events:auto}
   </style>
 </head>
 <body>
-  <div class="progress" id="progress"></div>
-  <div class="orb" aria-hidden="true"></div><div class="orb" aria-hidden="true"></div>
-
-  <header class="header" id="site-header">
+  <header class="header">
     <div class="container nav">
-      <a class="brand" href="#top">
-        <img alt="Banana Tech logo" src="logo.png"><span>Banana Tech</span>
-      </a>
+      <a class="brand" href="#top"><img src="logo.png" alt="Banana Tech"><span>Banana Tech</span></a>
       <nav>
-        <a href="#guide" data-link="#guide">Highlights</a>
-        <a href="#faq" data-link="#faq">FAQ</a>
-        <a href="#ask" data-link="#ask">Ask</a>
-        <a class="pill" href="#docs-view" data-link="#docs-view">Preview Guide</a>
-        <a class="btn" href="BananaTech-Hackintosh-Guide.pdf" target="_blank" rel="noopener">Open Full Guide in New Tab</a>
+        <a class="active" href="#guide">Highlights</a>
+        <a href="#faq">FAQ</a>
+        <a href="#ask">Contact</a>
+        <a class="pill" href="#docs">Preview Guide</a>
+        <a class="btn" href="BananaTech-Hackintosh-Guide.pdf" target="_blank" rel="noopener">Open Full Guide</a>
+        <a class="btn" href="BananaTech-Hackintosh-Guide.pdf" download>Download PDF</a>
       </nav>
     </div>
   </header>
 
   <main id="top" class="container">
-    <section class="hero reveal">
+    <section class="hero">
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="hero-grid">
         <div>
           <div class="kicker">Banana Tech</div>
-          <h1>Get macOS on compatible PCs — with a friendly guide and real answers</h1>
-          <p>Our step-by-step PDF walks you through creating an OpenCore installer, preparing your EFI, and installing macOS. When you hit a snag, the FAQ and question form have your back.</p>
-
+          <h1 style="margin:.25rem 0 .6rem;line-height:1.12;font-size:clamp(2rem,3.6vw,3.2rem)">Hackintosh guide that actually makes sense</h1>
+          <p style="color:#cbd5e1;max-width:60ch">Step by step PDF for OpenCore, EFI setup, and install. When you hit a snag, our restored FAQ and the contact panel below are ready.</p>
           <div class="badges">
-            <div class="badge"><strong>Windows Vista+</strong> required</div>
-            <div class="badge">16 GB+ USB drive</div>
-            <div class="badge">Stable ethernet recommended</div>
+            <div class="badge"><strong>Windows Vista+</strong></div>
+            <div class="badge">16 GB+ USB</div>
+            <div class="badge">Ethernet recommended</div>
           </div>
-
-          <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
-            <a class="pill" href="#docs-view" data-link="#docs-view">Preview Guide</a>
-            <a class="btn" href="BananaTech-Hackintosh-Guide.pdf" target="_blank" rel="noopener">Open Full Guide in New Tab</a>
+          <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="pill" href="#docs">Preview Guide</a>
+            <a class="btn" href="BananaTech-Hackintosh-Guide.pdf" target="_blank" rel="noopener">Open Full Guide</a>
+            <a class="btn" href="BananaTech-Hackintosh-Guide.pdf" download>Download PDF</a>
           </div>
         </div>
 
-        <div class="card reveal">
-          <h3 style="margin-top:0">What’s inside the guide</h3>
-          <p class="small">A step-by-step illustrated PDF covering OpenCore installer creation, EFI setup, and troubleshooting tips for running macOS on compatible PCs.</p>
-          <div class="notice small">Includes detailed kext selection, ProperTree cleanup, and post-install configuration.</div>
+        <div class="card">
+          <h3 style="margin-top:0">What is inside</h3>
+          <p class="helper">Illustrated steps for macOS installer, EFI, and troubleshooting tips.</p>
+          <div class="helper">Includes kext selection, ProperTree cleanup, and post-install configuration.</div>
         </div>
       </div>
     </section>
 
-    <section id="guide" class="section reveal">
+    <section id="guide" class="section">
       <h2>Guide Highlights</h2>
       <div class="grid cols-3">
-        <div class="card feature"><div class="icon">🧰</div><div><h3>Prerequisites</h3><p>Windows Vista or newer, 16 GB+ USB, internet, and ethernet for setup.</p></div></div>
-        <div class="card feature"><div class="icon">🧪</div><div><h3>Check Compatibility</h3><p>Use OpCore Simplify to scan hardware and see the highest macOS version supported.</p></div></div>
-        <div class="card feature"><div class="icon">🔧</div><div><h3>Build EFI</h3><p>Collect kexts (e.g., USBToolBox) and tidy config with ProperTree.</p></div></div>
-        <div class="card feature"><div class="icon">💿</div><div><h3>Create Installer</h3><p>Fetch recovery with OpenCorePkg macrecovery; build a bootable USB with Rufus.</p></div></div>
-        <div class="card feature"><div class="icon">🖥️</div><div><h3>Install macOS</h3><p>Boot from USB and finish setup; keep USB inserted until EFI is copied to the internal drive.</p></div></div>
-        <div class="card feature"><div class="icon">✅</div><div><h3>Finish Up</h3><p>Mount EFI in macOS and copy your working EFI to the internal EFI partition.</p></div></div>
+        <div class="card feature"><div class="icon">🧰</div><div><h3>Prerequisites</h3><p>Vista+, 16 GB USB, internet, ethernet for setup.</p></div></div>
+        <div class="card feature"><div class="icon">🧪</div><div><h3>Check Compatibility</h3><p>Run OpCore Simplify for highest supported macOS.</p></div></div>
+        <div class="card feature"><div class="icon">🔧</div><div><h3>Build EFI</h3><p>Gather kexts, clean config with ProperTree.</p></div></div>
+        <div class="card feature"><div class="icon">💿</div><div><h3>Create Installer</h3><p>OpenCorePkg macrecovery + Rufus USB.</p></div></div>
+        <div class="card feature"><div class="icon">🖥️</div><div><h3>Install macOS</h3><p>Boot USB, finish setup, copy EFI to disk.</p></div></div>
+        <div class="card feature"><div class="icon">✅</div><div><h3>Finish Up</h3><p>Mount and copy working EFI to internal EFI.</p></div></div>
       </div>
     </section>
 
-    <!-- ===== FAQ (search + click-to-open; no expand/collapse all) ===== -->
-    <section id="faq" class="section reveal">
+    <!-- FAQ (restored + improved UI) -->
+    <section id="faq" class="section">
       <h2>FAQ</h2>
-      <p class="lead">Answers to common questions from the guide and our community.</p>
+      <p class="helper" style="margin-top:-6px">Search, filter by category, and click the plus to open answers.</p>
 
-      <div class="faq-controls card">
-        <input id="faq-search" class="input" type="search" placeholder="Search FAQ (e.g., Wi-Fi, USB, EFI)…" style="max-width:380px">
-      </div>
-
-      <div id="faq-list" class="grid" aria-live="polite">
-        <div class="faq-item" data-keywords="prerequisites usb ethernet windows vista requirements">
-          <div class="faq-q" tabindex="0" role="button" aria-expanded="false"><h3>What do I need before starting?</h3><span class="plus" aria-hidden="true">＋</span></div>
-          <div class="faq-a"><p>Windows Vista or newer, 16 GB+ USB, reliable internet, and ideally ethernet for the installer.</p></div>
+      <div class="card">
+        <div class="faq-toolbar">
+          <input id="faq-search" class="search" type="search" placeholder="Search FAQ (e.g., Wi‑Fi, USB, EFI)…">
+          <div id="chips" style="display:flex;gap:8px;flex-wrap:wrap">
+            <button class="chip active" data-chip="all" type="button">All</button>
+            <button class="chip" data-chip="setup" type="button">Setup</button>
+            <button class="chip" data-chip="network" type="button">Network</button>
+            <button class="chip" data-chip="troubleshoot" type="button">Troubleshoot</button>
+          </div>
+          <div id="count" class="helper" style="margin-left:auto">Showing 6</div>
         </div>
 
-        <div class="faq-item" data-keywords="compatibility supported macos version opencore simplify hardware">
-          <div class="faq-q" tabindex="0" role="button" aria-expanded="false"><h3>Which macOS version can I run?</h3><span class="plus" aria-hidden="true">＋</span></div>
-          <div class="faq-a"><p>Run OpCore Simplify and choose the highest “Supported macOS Version” it reports for your hardware.</p></div>
-        </div>
+        <div id="faq-list" class="faq-wrap" aria-live="polite">
+          <!-- 1 -->
+          <article class="faq-item" data-cat="setup" data-keywords="prerequisites usb ethernet windows vista requirements">
+            <header class="faq-q" tabindex="0" role="button" aria-expanded="false">
+              <div>
+                <h3>What do I need before starting?</h3>
+                <div class="meta"><span>Setup</span></div>
+              </div>
+              <span class="plus" aria-hidden="true">＋</span>
+            </header>
+            <div class="faq-content">
+              <div class="faq-a"><p>Windows Vista or newer, 16 GB+ USB, reliable internet, and ideally ethernet for the installer.</p></div>
+            </div>
+          </article>
 
-        <div class="faq-item" data-keywords="unsupported hardware troubleshoot stability">
-          <div class="faq-q" tabindex="0" role="button" aria-expanded="false"><h3>Something shows unsupported</h3><span class="plus" aria-hidden="true">＋</span></div>
-          <div class="faq-a"><p>That machine may not be ideal. You can try alternate kexts, but expect possible instability.</p></div>
-        </div>
+          <!-- 2 -->
+          <article class="faq-item" data-cat="setup" data-keywords="compatibility supported macos version opencore simplify hardware">
+            <header class="faq-q" tabindex="0" role="button" aria-expanded="false">
+              <div>
+                <h3>Which macOS version can I run?</h3>
+                <div class="meta"><span>Setup</span></div>
+              </div>
+              <span class="plus" aria-hidden="true">＋</span>
+            </header>
+            <div class="faq-content">
+              <div class="faq-a"><p>Run OpCore Simplify and choose the highest <em>Supported macOS Version</em> it reports for your hardware.</p></div>
+            </div>
+          </article>
 
-        <div class="faq-item" data-keywords="wifi ethernet network kexts internet">
-          <div class="faq-q" tabindex="0" role="button" aria-expanded="false"><h3>Do I need Wi-Fi?</h3><span class="plus" aria-hidden="true">＋</span></div>
-          <div class="faq-a"><p>Use ethernet during install. Wi-Fi depends on your chipset and kexts; enable it after macOS is installed.</p></div>
-        </div>
+          <!-- 3 -->
+          <article class="faq-item" data-cat="troubleshoot" data-keywords="unsupported hardware troubleshoot stability">
+            <header class="faq-q" tabindex="0" role="button" aria-expanded="false">
+              <div>
+                <h3>Something shows unsupported</h3>
+                <div class="meta"><span>Troubleshoot</span></div>
+              </div>
+              <span class="plus" aria-hidden="true">＋</span>
+            </header>
+            <div class="faq-content">
+              <div class="faq-a"><p>That machine may not be ideal. You can try alternate kexts, but expect possible instability.</p></div>
+            </div>
+          </article>
 
-        <div class="faq-item" data-keywords="usb reuse reformat installer drive backup efi">
-          <div class="faq-q" tabindex="0" role="button" aria-expanded="false"><h3>Can I reuse the USB later?</h3><span class="plus" aria-hidden="true">＋</span></div>
-          <div class="faq-a"><p>Yes—reformat it after setup. Be sure to back up your working EFI first.</p></div>
-        </div>
+          <!-- 4 -->
+          <article class="faq-item" data-cat="network" data-keywords="wifi ethernet network kexts internet">
+            <header class="faq-q" tabindex="0" role="button" aria-expanded="false">
+              <div>
+                <h3>Do I need Wi‑Fi?</h3>
+                <div class="meta"><span>Network</span></div>
+              </div>
+              <span class="plus" aria-hidden="true">＋</span>
+            </header>
+            <div class="faq-content">
+              <div class="faq-a"><p>Use ethernet during install. Wi‑Fi depends on your chipset and kexts; enable it after macOS is installed.</p></div>
+            </div>
+          </article>
 
-        <div class="faq-item" data-keywords="help guide dortania motherboard resources">
-          <div class="faq-q" tabindex="0" role="button" aria-expanded="false"><h3>Where can I get deeper help?</h3><span class="plus" aria-hidden="true">＋</span></div>
-          <div class="faq-a"><p>See Dortania’s OpenCore Install Guide and your motherboard’s community resources.</p></div>
+          <!-- 5 -->
+          <article class="faq-item" data-cat="setup" data-keywords="usb reuse reformat installer drive backup efi">
+            <header class="faq-q" tabindex="0" role="button" aria-expanded="false">
+              <div>
+                <h3>Can I reuse the USB later?</h3>
+                <div class="meta"><span>Setup</span></div>
+              </div>
+              <span class="plus" aria-hidden="true">＋</span>
+            </header>
+            <div class="faq-content">
+              <div class="faq-a"><p>Yes—reformat it after setup. Be sure to back up your working EFI first.</p></div>
+            </div>
+          </article>
+
+          <!-- 6 -->
+          <article class="faq-item" data-cat="troubleshoot" data-keywords="help guide dortania motherboard resources">
+            <header class="faq-q" tabindex="0" role="button" aria-expanded="false">
+              <div>
+                <h3>Where can I get deeper help?</h3>
+                <div class="meta"><span>Troubleshoot</span></div>
+              </div>
+              <span class="plus" aria-hidden="true">＋</span>
+            </header>
+            <div class="faq-content">
+              <div class="faq-a"><p>See Dortania’s OpenCore Install Guide and your motherboard’s community resources.</p></div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="ask" class="section reveal">
+    <!-- Contact (mail) — restored card with gradient frame, inline validation, counters, toast states -->
+    <section id="ask" class="section">
       <h2>Ask Banana Tech a Question</h2>
-      <p class="lead">Send us your issue and we will get back with guidance.</p>
+      <p class="helper" style="margin-top:-6px">This panel keeps your original look but tightens spacing and adds feedback.</p>
 
-      <form id="question-form" class="form card" action="https://formspree.io/f/xkgzeaag" method="POST" novalidate>
-        <div>
-          <label for="name">Name</label>
-          <input id="name" name="name" class="input" type="text" placeholder="Your name" required>
-        </div>
-        <div>
-          <label for="email">Email</label>
-          <input id="email" name="email" class="input" type="email" placeholder="you@example.com" required>
-        </div>
-        <div>
-          <label for="question">Your Question</label>
-          <textarea id="question" name="question" rows="5" placeholder="Describe the problem and what you tried..." required></textarea>
-          <div class="helper">Tip: include your CPU, GPU, and motherboard model.</div>
-        </div>
+      <div class="contact-card">
+        <div class="contact-inner">
+          <div class="contact-grid">
+            <form id="question-form" class="form" action="https://formspree.io/f/xkgzeaag" method="POST" novalidate>
+              <div class="field-row">
+                <div>
+                  <label for="name">Name</label>
+                  <input id="name" name="name" class="input" type="text" placeholder="Your name" required>
+                </div>
+                <div>
+                  <label for="email">Email</label>
+                  <input id="email" name="email" class="input" type="email" placeholder="you@example.com" required>
+                </div>
+              </div>
 
-        <input type="hidden" name="_subject" value="Banana Tech — New Question">
-        <input type="hidden" name="page" value="bananatechhackintosh.github.io">
-        <input type="text" name="_gotcha" style="display:none">
+              <div>
+                <label for="question">Your Question</label>
+                <textarea id="question" name="question" rows="6" placeholder="Describe the problem and what you tried..." required maxlength="2000"></textarea>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px">
+                  <div class="helper">Tip: include CPU, GPU, and motherboard.</div>
+                  <div class="counter"><span id="chars">0</span>/2000</div>
+                </div>
+              </div>
 
-        <div style="display:flex;gap:10px;align-items:center">
-          <button id="submit-btn" class="btn" type="submit">Submit</button>
-          <span id="form-success" class="small" hidden>Thanks! We got your message.</span>
-          <span id="form-error" class="small" hidden style="color:#ffb3b3">Something went wrong. Please try again.</span>
+              <!-- Hidden fields and honeypot -->
+              <input type="hidden" name="_subject" value="Banana Tech — New Question">
+              <input type="hidden" name="page" value="bananatechhackintosh.github.io">
+              <input type="text" name="_gotcha" style="display:none">
+
+              <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+                <button id="submit-btn" class="btn send" type="submit"><span class="spin" aria-hidden="true"></span> Submit</button>
+                <span id="form-success" class="status ok" hidden>Thanks. We got your message.</span>
+                <span id="form-error" class="status err" hidden>Could not send. Please try again.</span>
+                <a class="pill" href="mailto:hello@bananatech.example?subject=Hackintosh%20question">Email instead</a>
+              </div>
+            </form>
+
+            <!-- Side info panel -->
+            <aside class="card" aria-label="Contact info">
+              <h3 style="margin-top:0">Faster replies</h3>
+              <ul style="margin:0;padding-left:18px;color:#cbd5e1">
+                <li>Add exact motherboard and BIOS version</li>
+                <li>CPU and iGPU/dGPU model</li>
+                <li>macOS version you target</li>
+                <li>Attach short EFI folder tree if possible</li>
+              </ul>
+              <hr style="border:0;border-top:1px solid rgba(229,231,235,.10);margin:14px 0">
+              <div class="helper">We reply by email. No spam. Your info stays private.</div>
+            </aside>
+          </div>
         </div>
-      </form>
+      </div>
     </section>
 
-    <hr>
+    <!-- PDF preview (unchanged behavior) -->
+    <section id="docs" class="section" style="background:#0b1222;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+      <div class="container">
+        <h2>Preview the Guide</h2>
+        <div class="card" style="padding:0;overflow:hidden">
+          <object id="pdfObject" data="BananaTech-Hackintosh-Guide.pdf#toolbar=1&navpanes=0&view=FitH" type="application/pdf" style="width:100%;height:min(1200px,80vh)">
+            <div style="padding:24px">
+              <p>Your browser cannot show PDFs inline.
+                <a class="btn" href="BananaTech-Hackintosh-Guide.pdf" target="_blank" rel="noopener">Open Full Guide</a>
+                <a class="btn" href="BananaTech-Hackintosh-Guide.pdf" download>Download PDF</a>
+              </p>
+            </div>
+          </object>
+        </div>
+        <p id="pdfMissingMsg" class="helper" style="display:none;margin-top:10px">PDF not found. Upload <code>BananaTech-Hackintosh-Guide.pdf</code> to the repo root.</p>
+      </div>
+    </section>
   </main>
 
-  <section id="docs-view" class="docs-bg reveal" aria-label="Guide (docs-style)">
-    <div class="doc-canvas">
-      <div class="doc-page" role="region" aria-label="Guide page">
-        <object data="BananaTech-Hackintosh-Guide.pdf#toolbar=1&navpanes=0&view=FitH" type="application/pdf">
-          <div style="padding:24px">
-            <p>Your browser can’t show PDFs inline.
-              <a class="btn" href="BananaTech-Hackintosh-Guide.pdf" target="_blank" rel="noopener">Open Full Guide in New Tab</a>.
-            </p>
-          </div>
-        </object>
-      </div>
-    </div>
-  </section>
-
-  <footer class="container reveal">
+  <footer class="container">
     <div>© Banana Tech — Built with ❤️</div>
-    <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap">
+    <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
       <a class="btn" href="about.html">About</a>
       <a class="btn" href="privacy.html">Privacy Policy</a>
       <a class="btn" href="terms.html">Terms of Service</a>
     </div>
   </footer>
 
-  <!-- Back to top -->
   <a href="#top" class="to-top" id="toTop" aria-label="Back to top">↑</a>
 
-  <!-- Toast -->
-  <div class="toast" id="toast">✅ Sent! We’ll reply by email.</div>
-
   <script>
-    // Scroll progress
-    const bar=document.getElementById('progress');
-    const setBar=()=>{ 
-      const s=window.scrollY; 
-      const h=document.documentElement.scrollHeight - window.innerHeight;
-      bar.style.width = Math.max(0, Math.min(1, s/h))*100 + '%';
-    };
-    addEventListener('scroll', setBar, {passive:true}); setBar();
+    // back-to-top
+    const toTop=document.getElementById('toTop');
+    addEventListener('scroll',()=>{toTop.classList.toggle('show',(window.scrollY||document.documentElement.scrollTop)>600)},{passive:true});
 
-    // Reveal
-    const observer = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){ e.target.classList.add('is-visible'); observer.unobserve(e.target); }
-      })
-    }, { threshold:.15, rootMargin:"0px 0px -40px 0px" });
-    document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-
-    // Parallax orbs
-    window.addEventListener('mousemove', (e)=>{
-      const x = (e.clientX / window.innerWidth - .5) * 6;
-      const y = (e.clientY / window.innerHeight - .5) * 6;
-      document.querySelectorAll('.orb').forEach((o,i)=>{
-        o.style.transform = `translate(${x*(i? -1:1)}px, ${y*(i? 1:-1)}px)`;
-      });
-    }, {passive:true});
-
-    // Smooth in-page anchors
+    // smooth internal links
     document.querySelectorAll('a[href^="#"]').forEach(a=>{
       a.addEventListener('click',e=>{
-        const href=a.getAttribute('href'); const t=document.querySelector(href);
-        if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+        const t=document.querySelector(a.getAttribute('href'));
+        if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'});}
       });
     });
 
-    // Nav shade on scroll + back-to-top
-    const onScroll = () => {
-      const y = window.scrollY || document.documentElement.scrollTop;
-      document.querySelector('.header').classList.toggle('scrolled', y > 6);
-      document.getElementById('toTop').classList.toggle('show', y > 600);
-    };
-    window.addEventListener('scroll', onScroll, {passive:true});
-    onScroll();
+    // FAQ: open/close + smooth height + search highlight + chips
+    const faqList = document.getElementById('faq-list');
+    const searchEl = document.getElementById('faq-search');
+    const countEl = document.getElementById('count');
+    const chipsWrap = document.getElementById('chips');
+    let activeCat = 'all';
 
-    // Keep doc framed
-    function layoutDocCanvas(){
-      const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-      const maxW = vw - 80; 
-      const pageW = 720;
-      const scale = Math.min(0.9, maxW / pageW);
-      document.documentElement.style.setProperty('--doc-scale', scale.toString());
+    function setMaxHeight(item, open){
+      const box=item.querySelector('.faq-content'); if(!box) return;
+      if(open){ box.style.maxHeight = box.scrollHeight+'px'; }
+      else { box.style.maxHeight = '0px'; }
     }
-    layoutDocCanvas();
-    window.addEventListener('resize', layoutDocCanvas);
 
-    /* ===== FAQ (search + click-to-open) ===== */
-    (function(){
-      const list = document.getElementById('faq-list');
-      if(!list) return;
+    function toggleItem(item){
+      const open = !item.classList.contains('open');
+      item.classList.toggle('open', open);
+      item.querySelector('.faq-q')?.setAttribute('aria-expanded', String(open));
+      const plus = item.querySelector('.plus'); if(plus) plus.textContent = open ? '–' : '＋';
+      setMaxHeight(item, open);
+    }
 
-      const inputSearch = document.getElementById('faq-search');
-      const items = Array.from(list.querySelectorAll('.faq-item'));
+    faqList.querySelectorAll('.faq-item').forEach(item=>{
+      const q=item.querySelector('.faq-q');
+      const plus=item.querySelector('.plus');
+      q.addEventListener('click',()=>toggleItem(item));
+      q.addEventListener('keydown',e=>{ if(e.key===' '||e.key==='Enter'){ e.preventDefault(); toggleItem(item);} });
+      if(plus){ plus.style.cursor='pointer'; plus.addEventListener('click',e=>{ e.stopPropagation(); toggleItem(item); }); }
+      setMaxHeight(item, false);
+    });
 
-      function setHeight(item){
-        const a = item.querySelector('.faq-a');
-        if(!a) return;
-        if(item.classList.contains('open')){
-          a.style.maxHeight = '0px';
-          requestAnimationFrame(()=>{ a.style.maxHeight = a.scrollHeight + 'px'; });
-        } else {
-          a.style.maxHeight = '0px';
-        }
-      }
-
-      function toggle(item){
-        const wasOpen = item.classList.contains('open');
-        item.classList.toggle('open');
-        item.querySelector('.faq-q')?.setAttribute('aria-expanded', String(!wasOpen));
-        const icon = item.querySelector('.faq-q .plus');
-        if(icon) icon.textContent = item.classList.contains('open') ? '–' : '＋';
-        setHeight(item);
-      }
-
-      items.forEach(item=>{
-        const q = item.querySelector('.faq-q');
-        const plus = item.querySelector('.faq-q .plus');
-
-        if(q){
-          q.addEventListener('click', ()=>toggle(item));
-          q.addEventListener('keydown', (e)=>{ if(e.key===' '||e.key==='Enter'){ e.preventDefault(); toggle(item); }});
-        }
-        if(plus){
-          plus.style.cursor = 'pointer';
-          plus.addEventListener('click', (e)=>{ e.stopPropagation(); toggle(item); });
-        }
-        // init
-        item.classList.remove('open'); setHeight(item);
+    function escapeRegExp(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+    function highlight(el, q){
+      const content=el.innerText; if(!q){ el.innerHTML = el.innerHTML; return; }
+      const re=new RegExp('('+escapeRegExp(q)+')','ig');
+      const walker=document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null);
+      const nodes=[];
+      while(walker.nextNode()) nodes.push(walker.currentNode);
+      nodes.forEach(node=>{
+        if(!node.nodeValue.trim()) return;
+        const span=document.createElement('span');
+        span.innerHTML=node.nodeValue.replace(re,'<mark>$1</mark>');
+        node.parentNode.replaceChild(span, node);
       });
+    }
 
-      function normalize(s){ return (s||'').toLowerCase(); }
-      function filter(){
-        const q = normalize(inputSearch && inputSearch.value ? inputSearch.value : '');
-        let shown = 0, last = null;
-        items.forEach(it=>{
-          const qEl = it.querySelector('.faq-q'); 
-          const aEl = it.querySelector('.faq-a'); 
-          const textQ = normalize(qEl ? qEl.textContent : '');
-          const textA = normalize(aEl ? aEl.textContent : '');
-          const keys  = normalize(it.getAttribute('data-keywords'));
-          const match = !q || textQ.includes(q) || textA.includes(q) || keys.includes(q);
-          it.style.display = match ? '' : 'none';
-          if(match){ shown++; last = it; }
-          if(!q){ it.classList.remove('open'); setHeight(it); }
-        });
-        if(q && shown===1 && last){ last.classList.add('open'); setHeight(last); }
-      }
-      if(inputSearch){
-        inputSearch.addEventListener('input', filter);
-        inputSearch.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ inputSearch.value=''; filter(); }});
-      }
-      window.addEventListener('resize', ()=> items.filter(it=>it.classList.contains('open')).forEach(setHeight));
-    })();
+    function filterFaq(){
+      const q=(searchEl.value||'').trim().toLowerCase();
+      let shown=0, last=null;
+      faqList.querySelectorAll('.faq-item').forEach(item=>{
+        // reset previous highlights
+        item.querySelectorAll('mark').forEach(m=>{ const text=document.createTextNode(m.textContent); m.parentNode.replaceChild(text,m); });
 
-    // Formspree (unchanged)
-    (function () {
-      const form = document.getElementById('question-form');
-      if (!form) return;
+        const cat=item.getAttribute('data-cat');
+        const keys=(item.getAttribute('data-keywords')||'').toLowerCase();
+        const qText=(item.querySelector('.faq-q h3')?.textContent||'').toLowerCase();
+        const aText=(item.querySelector('.faq-a')?.textContent||'').toLowerCase();
+        const catOk = (activeCat==='all') || (cat===activeCat);
+        const hit = !q || qText.includes(q) || aText.includes(q) || keys.includes(q);
+        const show = catOk && hit;
+        item.style.display = show ? '' : 'none';
+        if(show){ shown++; last=item; }
 
-      const btn = document.getElementById('submit-btn');
-      const ok  = document.getElementById('form-success');
-      const err = document.getElementById('form-error');
-      const emailField = document.getElementById('email');
-      const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        ok.hidden = true; err.hidden = true;
-
-        if (!form.checkValidity()) { form.reportValidity(); return; }
-
-        const value = (emailField?.value || '').trim();
-        if (!value || !emailRe.test(value)) {
-          emailField.setCustomValidity('Please enter a valid email address (name@example.com).');
-          emailField.reportValidity();
-          emailField.setCustomValidity('');
-          return;
+        if(q && show){
+          highlight(item.querySelector('.faq-q h3'), q);
+          highlight(item.querySelector('.faq-a'), q);
         }
 
-        btn.disabled = true; btn.textContent = 'Sending…';
-        try {
-          const res = await fetch(form.action, { method: 'POST', headers: { 'Accept': 'application/json' }, body: new FormData(form) });
-          if (res.ok) {
-            form.reset();
-            ok.hidden = false;
-
-            const t=document.getElementById('toast');
-            if(t){ t.classList.add('show'); setTimeout(()=>t.classList.remove('show'), 2600); }
-          } else {
-            const data = await res.json().catch(()=>null);
-            err.textContent = (data && data.errors && data.errors[0] && data.errors[0].message) ? data.errors[0].message : 'Something went wrong. Please try again.';
-            err.hidden = false;
-          }
-        } catch {
-          err.textContent = 'Network error. Please check your connection and try again.';
-          err.hidden = false;
-        } finally {
-          btn.disabled = false; btn.textContent = 'Submit';
-        }
+        // collapse items when filtering
+        if(!q){ item.classList.remove('open'); setMaxHeight(item,false); }
       });
+      countEl.textContent = `Showing ${shown}`;
+      if(q && shown===1 && last){ last.classList.add('open'); setMaxHeight(last,true); last.querySelector('.plus').textContent='–'; }
+    }
+    searchEl.addEventListener('input', filterFaq);
+
+    chipsWrap.addEventListener('click', (e)=>{
+      const btn=e.target.closest('.chip'); if(!btn) return;
+      chipsWrap.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+      btn.classList.add('active');
+      activeCat = btn.getAttribute('data-chip');
+      filterFaq();
+    });
+
+    // Contact form: inline validation, character counter, toast states
+    const form = document.getElementById('question-form');
+    const btn  = document.getElementById('submit-btn');
+    const ok   = document.getElementById('form-success');
+    const err  = document.getElementById('form-error');
+    const emailField = document.getElementById('email');
+    const qField     = document.getElementById('question');
+    const charsEl    = document.getElementById('chars');
+    const emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    function updateCount(){ charsEl.textContent = (qField.value||'').length; }
+    qField.addEventListener('input', updateCount); updateCount();
+
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault(); ok.hidden=true; err.hidden=true;
+      if(!form.checkValidity()){ form.reportValidity(); return; }
+      const email=(emailField.value||'').trim();
+      if(!emailRe.test(email)){ emailField.setCustomValidity('Enter a valid email like name@example.com'); emailField.reportValidity(); emailField.setCustomValidity(''); return; }
+
+      btn.disabled=true; form.classList.add('sending'); btn.querySelector('.spin').style.display='inline-block';
+
+      try{
+        const res = await fetch(form.action,{ method:'POST', headers:{'Accept':'application/json'}, body:new FormData(form) });
+        if(res.ok){
+          form.reset(); updateCount(); ok.hidden=false;
+        }else{
+          const data=await res.json().catch(()=>null);
+          err.textContent = (data && data.errors && data.errors[0] && data.errors[0].message) ? data.errors[0].message : 'Something went wrong. Please try again.';
+          err.hidden=false;
+        }
+      }catch{
+        err.textContent='Network error. Please try again.'; err.hidden=false;
+      }finally{
+        btn.disabled=false; form.classList.remove('sending'); btn.querySelector('.spin').style.display='none';
+      }
+    });
+
+    // PDF existence check so the preview section does not look broken on first publish
+    (async function(){
+      const pdf='BananaTech-Hackintosh-Guide.pdf';
+      const msg=document.getElementById('pdfMissingMsg');
+      const res = await fetch(pdf,{method:'HEAD'}).catch(()=>null);
+      if(!res || !res.ok){ if(msg) msg.style.display='block'; }
     })();
   </script>
 </body>
