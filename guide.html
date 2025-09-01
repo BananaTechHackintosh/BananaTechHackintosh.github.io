@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Banana Tech Hackintosh Guide – HTML Preview + PDF Viewer</title>
+  <meta name="description" content="Crawlable HTML summary and robust PDF viewer for the Banana Tech Hackintosh guide. Works across browsers with fallbacks." />
+  <link rel="icon" href="logo.png" />
+
+  <!-- Important: tell crawlers there is also a PDF version -->
+  <link rel="alternate" type="application/pdf" href="BananaTech-Hackintosh-Guide.pdf" />
+
+  <!-- Optional: your analytics / AdSense. If this page is ever very light, remove AdSense here. -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PM2BNW0Q6Z"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)};gtag('js',new Date());gtag('config','G-PM2BNW0Q6Z');</script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7496234429485138" crossorigin="anonymous"></script>
+
+  <style>
+    :root{
+      --bg:#0b1020;--panel:#0f172a;--text:#e6edf3;--muted:#a9b3c1;--line:rgba(255,255,255,.12);
+      --accent:#ffd84a;--accent2:#ffb300;--radius:16px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;background:linear-gradient(180deg,#0b1020,#0b1226);color:var(--text);-webkit-font-smoothing:antialiased}
+    .wrap{max-width:1100px;margin:0 auto;padding:24px}
+    header{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+    header img{width:40px;height:40px;border-radius:10px;background:#0f1628}
+    h1{margin:.4rem 0 0}
+    .toolbar{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 0}
+    .btn{display:inline-flex;align-items:center;gap:.5ch;background:linear-gradient(100deg,var(--accent),var(--accent2));color:#000;font-weight:800;border:none;border-radius:12px;padding:10px 14px;text-decoration:none}
+    .pill{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:8px 12px;text-decoration:none;color:#fff}
+    .grid{display:grid;gap:18px}
+    .two{grid-template-columns:1.2fr .8fr}
+    @media(max-width:900px){.two{grid-template-columns:1fr}}
+
+    /* PDF panel */
+    .viewer{background:linear-gradient(180deg,rgba(255,255,255,.04),transparent);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+    .viewer iframe,.viewer object{width:100%;height:min(1200px,78vh);border:0;display:block;background:#0b1222}
+    .fallback{padding:18px}
+    .note{color:var(--muted);font-size:.95rem}
+    hr{border:0;border-top:1px solid var(--line);margin:16px 0}
+
+    /* Content column */
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.04),transparent);border:1px solid var(--line);border-radius:var(--radius);padding:16px}
+    ul{margin:0 0 0 18px}
+    .toc a{display:block;padding:6px 8px;border-radius:10px}
+    .toc a:hover{background:rgba(255,255,255,.06)}
+    footer{color:#9ca3af;margin:20px 0 10px}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <img src="logo.png" alt="Banana Tech" />
+      <div>
+        <h1>Hackintosh Guide – Preview & PDF</h1>
+        <div class="note"></div>
+      </div>
+    </header>
+
+    <div class="toolbar">
+      <a class="btn" href="BananaTech-Hackintosh-Guide.pdf" target="_blank" rel="noopener">Open full PDF</a>
+      <a class="pill" href="BananaTech-Hackintosh-Guide.pdf" download>Download</a>
+      <a class="pill" href="./">Back to home</a>
+    </div>
+
+    <div class="grid two" style="margin-top:18px">
+      <!-- Left: PDF viewer -->
+      <section class="viewer" aria-label="PDF viewer">
+        <!-- 1) Try native PDF embed -->
+        <object id="pdfObject" data="BananaTech-Hackintosh-Guide.pdf#toolbar=1&navpanes=0&view=FitH" type="application/pdf">
+          <!-- 2) Fallback UI (will be replaced by Google Docs Viewer if needed) -->
+          <div class="fallback" id="fallbackBox">
+            <p class="note">
+              Your browser could not display the PDF inline. You can still
+              <a class="btn" href="BananaTech-Hackintosh-Guide.pdf" target="_blank" rel="noopener">open the guide</a>
+              or <a class="pill" href="BananaTech-Hackintosh-Guide.pdf" download>download it</a>.
+            </p>
+          </div>
+        </object>
+      </section>
+
+      <!-- Right: crawlable HTML content (this is what helps with “low content”) -->
+      <aside class="card" aria-label="HTML summary">
+        <h2 style="margin-top:0">What is inside (HTML summary)</h2>
+        <p>
+          This page provides a readable HTML outline of the Banana Tech Hackintosh guide so that search engines
+          and advertising crawlers clearly see meaningful publisher content even if a PDF plug-in is not available.
+          You can use the PDF viewer on the left or follow the chapter links below.
+        </p>
+        <h3>Table of contents</h3>
+        <div class="toc">
+          <!-- Link to specific PDF pages so users without inline viewing can still deep-link -->
+          <a href="BananaTech-Hackintosh-Guide.pdf#page=1" target="_blank" rel="noopener">1. Overview & prerequisites</a>
+          <a href="BananaTech-Hackintosh-Guide.pdf#page=3" target="_blank" rel="noopener">2. Compatibility check (OpCore Simplify)</a>
+          <a href="BananaTech-Hackintosh-Guide.pdf#page=5" target="_blank" rel="noopener">3. Build the EFI (kexts + ProperTree)</a>
+          <a href="BananaTech-Hackintosh-Guide.pdf#page=8" target="_blank" rel="noopener">4. Create installer (macrecovery + Rufus)</a>
+          <a href="BananaTech-Hackintosh-Guide.pdf#page=11" target="_blank" rel="noopener">5. Install macOS (BIOS & setup)</a>
+          <a href="BananaTech-Hackintosh-Guide.pdf#page=14" target="_blank" rel="noopener">6. Post-install & copy working EFI</a>
+          <a href="BananaTech-Hackintosh-Guide.pdf#page=16" target="_blank" rel="noopener">7. Troubleshooting tips</a>
+        </div>
+        <hr>
+        <h3>Key steps (in plain HTML)</h3>
+        <ul>
+          <li><strong>Prerequisites:</strong> Windows Vista or newer, 16 GB USB, reliable internet; ethernet recommended for installer.</li>
+          <li><strong>Check compatibility:</strong> Run OpCore Simplify to confirm the highest supported macOS for your CPU, GPU and chipset.</li>
+          <li><strong>Build EFI:</strong> Gather kexts, configure <em>config.plist</em> with ProperTree, and clean unused entries.</li>
+          <li><strong>Create installer:</strong> Use OpenCorePkg’s <em>macrecovery</em> to fetch macOS, then write the USB with Rufus.</li>
+          <li><strong>Install:</strong> Boot from USB, complete Setup Assistant, then mount and copy the working EFI to the internal disk.</li>
+          <li><strong>Post-install:</strong> Enable Wi-Fi if supported by your chipset and kexts; verify sleep, audio and iGPU/dGPU.</li>
+          <li><strong>Backup:</strong> Keep a copy of your known-good EFI on the USB in case of future updates.</li>
+        </ul>
+        <p class="note">Need help? Use the contact form on your home page or email the team. No spam; we only reply to your question.</p>
+      </aside>
+    </div>
+
+    <footer>© Banana Tech</footer>
+  </div>
+
+  <script>
+    // Robust fallback: if the browser cannot render PDFs inline, swap in Google Docs Viewer.
+    (async function(){
+      const pdf = 'BananaTech-Hackintosh-Guide.pdf';
+      const obj = document.getElementById('pdfObject');
+      const box = document.getElementById('fallbackBox');
+
+      // 1) Make sure the file exists and is a PDF
+      let ok = false, isPdf = false;
+      try{
+        const res = await fetch(pdf, { method:'HEAD' });
+        ok = !!res && res.ok;
+        const ct = (res.headers.get('content-type') || '').toLowerCase();
+        isPdf = ct.includes('application/pdf');
+      }catch(e){}
+
+      if(!ok){
+        if(box) box.innerHTML = '<p class="note">PDF not found. Upload <code>BananaTech-Hackintosh-Guide.pdf</code> to your repository root.</p>';
+        return;
+      }
+
+      // 2) If the browser has no inline PDF support, use Google Docs Viewer as a fallback
+      const pluginOK = !!(navigator.mimeTypes && navigator.mimeTypes['application/pdf']);
+      const supportsObject = 'HTMLObjectElement' in window;
+
+      if(!(pluginOK && supportsObject && isPdf)){
+        const origin = location.origin + location.pathname.replace(/[^/]+$/, '');
+        const url = encodeURIComponent(origin + pdf);
+        const gview = 'https://docs.google.com/gview?embedded=1&url=' + url;
+
+        // Replace <object> with an <iframe> to Google Viewer
+        const frame = document.createElement('iframe');
+        frame.title = 'PDF fallback viewer';
+        frame.allow = 'fullscreen';
+        frame.loading = 'eager';
+        frame.src = gview;
+
+        const parent = obj.parentNode;
+        parent.replaceChild(frame, obj);
+      }
+    })();
+  </script>
+</body>
+</html>
