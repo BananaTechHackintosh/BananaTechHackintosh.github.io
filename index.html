@@ -155,7 +155,8 @@
         <a class="active" href="#guide">Highlights</a>
         <a href="#faq">FAQ</a>
         <a href="#ask">Contact</a>
-        <a class="pill" href="#docs">Preview Guide</a>
+        <!-- Preview button now redirects to guide.html -->
+        <a class="pill" href="guide.html">Preview Guide</a>
         <a class="btn" href="BananaTech-Hackintosh-Guide.pdf" target="_blank" rel="noopener">Open Full Guide</a>
         <a class="btn" href="BananaTech-Hackintosh-Guide.pdf" download>Download PDF</a>
       </nav>
@@ -176,7 +177,8 @@
             <div class="badge">Ethernet recommended</div>
           </div>
           <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
-            <a class="pill" href="#docs">Preview Guide</a>
+            <!-- Preview button now redirects to guide.html -->
+            <a class="pill" href="guide.html">Preview Guide</a>
             <a class="btn" href="BananaTech-Hackintosh-Guide.pdf" target="_blank" rel="noopener">Open Full Guide</a>
             <a class="btn" href="BananaTech-Hackintosh-Guide.pdf" download>Download PDF</a>
           </div>
@@ -209,7 +211,7 @@
 
       <div class="card">
         <div class="faq-toolbar">
-          <input id="faq-search" class="search" type="search" placeholder="Search FAQ (e.g., Wi‑Fi, USB, EFI)…">
+          <input id="faq-search" class="search" type="search" placeholder="Search FAQ (e.g., Wi-Fi, USB, EFI)…">
           <div id="chips" style="display:flex;gap:8px;flex-wrap:wrap">
             <button class="chip active" data-chip="all" type="button">All</button>
             <button class="chip" data-chip="setup" type="button">Setup</button>
@@ -266,13 +268,13 @@
           <article class="faq-item" data-cat="network" data-keywords="wifi ethernet network kexts internet">
             <header class="faq-q" tabindex="0" role="button" aria-expanded="false">
               <div>
-                <h3>Do I need Wi‑Fi?</h3>
+                <h3>Do I need Wi-Fi?</h3>
                 <div class="meta"><span>Network</span></div>
               </div>
               <span class="plus" aria-hidden="true">＋</span>
             </header>
             <div class="faq-content">
-              <div class="faq-a"><p>Use ethernet during install. Wi‑Fi depends on your chipset and kexts; enable it after macOS is installed.</p></div>
+              <div class="faq-a"><p>Use ethernet during install. Wi-Fi depends on your chipset and kexts; enable it after macOS is installed.</p></div>
             </div>
           </article>
 
@@ -363,24 +365,6 @@
             </aside>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- PDF preview (unchanged behavior) -->
-    <section id="docs" class="section" style="background:#0b1222;border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
-      <div class="container">
-        <h2>Preview the Guide</h2>
-        <div class="card" style="padding:0;overflow:hidden">
-          <object id="pdfObject" data="BananaTech-Hackintosh-Guide.pdf#toolbar=1&navpanes=0&view=FitH" type="application/pdf" style="width:100%;height:min(1200px,80vh)">
-            <div style="padding:24px">
-              <p>Your browser cannot show PDFs inline.
-                <a class="btn" href="BananaTech-Hackintosh-Guide.pdf" target="_blank" rel="noopener">Open Full Guide</a>
-                <a class="btn" href="BananaTech-Hackintosh-Guide.pdf" download>Download PDF</a>
-              </p>
-            </div>
-          </object>
-        </div>
-        <p id="pdfMissingMsg" class="helper" style="display:none;margin-top:10px">PDF not found. Upload <code>BananaTech-Hackintosh-Guide.pdf</code> to the repo root.</p>
       </div>
     </section>
   </main>
@@ -528,14 +512,6 @@
         btn.disabled=false; form.classList.remove('sending'); btn.querySelector('.spin').style.display='none';
       }
     });
-
-    // PDF existence check so the preview section does not look broken on first publish
-    (async function(){
-      const pdf='BananaTech-Hackintosh-Guide.pdf';
-      const msg=document.getElementById('pdfMissingMsg');
-      const res = await fetch(pdf,{method:'HEAD'}).catch(()=>null);
-      if(!res || !res.ok){ if(msg) msg.style.display='block'; }
-    })();
   </script>
 </body>
 </html>
