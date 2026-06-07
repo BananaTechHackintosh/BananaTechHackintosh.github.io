@@ -1,0 +1,37 @@
+title: Banana Tech Hackintosh
+description: Beginner-friendly OpenCore Hackintosh guide for compatible PCs, EFI setup, troubleshooting, and support.
+url: "https://bananatechhackintosh.github.io"
+baseurl: ""
+
+theme: just-the-docs
+color_scheme: banana_dark
+
+permalink: pretty
+favicon_ico: "/logo.png"
+logo: "/logo.png"
+
+search_enabled: true
+heading_anchors: true
+footer_content: "© Banana Tech — Built with Just the Docs."
+nav_external_links:
+  - title: Dortania Guide
+    url: https://dortania.github.io/OpenCore-Install-Guide/
+    hide_icon: false
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+      image: /logo.png
+
+exclude:
+  - .jekyll-cache/
+  - _site/
+  - jekyll-server.*.log
+  - Gemfile.lock
+  - vendor/

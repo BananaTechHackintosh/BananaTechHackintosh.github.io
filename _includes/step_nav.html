@@ -1,0 +1,29 @@
+{% if page.prev_step or page.next_step %}
+<nav class="step-nav" aria-label="Guide step navigation">
+  {% if page.prev_step %}
+    <a class="step-nav-link step-nav-prev" href="{{ page.prev_step.url | relative_url }}">
+      <span class="step-nav-kicker">Previous</span>
+      <span class="step-nav-title">{{ page.prev_step.title }}</span>
+    </a>
+  {% else %}
+    <span class="step-nav-link step-nav-disabled" aria-hidden="true">
+      <span class="step-nav-kicker">Previous</span>
+      <span class="step-nav-title">Start</span>
+    </span>
+  {% endif %}
+
+  <a class="step-nav-home" href="{{ '/guide.html' | relative_url }}">Guide Home</a>
+
+  {% if page.next_step %}
+    <a class="step-nav-link step-nav-next" href="{{ page.next_step.url | relative_url }}">
+      <span class="step-nav-kicker">Next</span>
+      <span class="step-nav-title">{{ page.next_step.title }}</span>
+    </a>
+  {% else %}
+    <span class="step-nav-link step-nav-disabled" aria-hidden="true">
+      <span class="step-nav-kicker">Next</span>
+      <span class="step-nav-title">Complete</span>
+    </span>
+  {% endif %}
+</nav>
+{% endif %}
