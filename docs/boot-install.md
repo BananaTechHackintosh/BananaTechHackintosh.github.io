@@ -1,7 +1,7 @@
 ---
 title: Boot and Install macOS
 parent: OpenCore Guide
-nav_order: 8
+nav_order: 7
 description: Boot the USB, enter recovery, format the target disk, and install macOS.
 permalink: /docs/boot-install.html
 prev_step:

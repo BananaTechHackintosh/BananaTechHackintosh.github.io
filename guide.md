@@ -19,14 +19,15 @@ Follow the guide in order:
 
 1. [Before You Start]({{ '/docs/before-you-start.html' | relative_url }})
 2. [Check Compatibility]({{ '/docs/check-compatibility.html' | relative_url }})
-3. [Download Tools]({{ '/docs/download-tools.html' | relative_url }})
-4. [Build the EFI]({{ '/docs/build-efi.html' | relative_url }})
-5. [Map USB Ports]({{ '/docs/usb-mapping.html' | relative_url }})
-6. [Clean `config.plist`]({{ '/docs/config-plist.html' | relative_url }})
-7. [Create the Installer]({{ '/docs/create-installer.html' | relative_url }})
-8. [Boot and Install macOS]({{ '/docs/boot-install.html' | relative_url }})
-9. [Post-Install]({{ '/docs/post-install.html' | relative_url }})
-10. [Troubleshooting]({{ '/docs/troubleshooting.html' | relative_url }})
+3. [Build the EFI]({{ '/docs/build-efi.html' | relative_url }})
+4. [Map USB Ports]({{ '/docs/usb-mapping.html' | relative_url }})
+5. [Clean `config.plist`]({{ '/docs/config-plist.html' | relative_url }})
+6. [Create the Installer]({{ '/docs/create-installer.html' | relative_url }})
+7. [Boot and Install macOS]({{ '/docs/boot-install.html' | relative_url }})
+8. [Post-Install]({{ '/docs/post-install.html' | relative_url }})
+9. [Troubleshooting]({{ '/docs/troubleshooting.html' | relative_url }})
+10. [Tool Links]({{ '/docs/download-tools.html' | relative_url }})
+11. [References and Updates]({{ '/docs/references.html' | relative_url }})
 
 ## What This Guide Covers
 

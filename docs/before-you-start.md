@@ -29,7 +29,9 @@ For modern USB mapping, use **Windows 10 or Windows 11 64-bit** when possible. U
 
 ## What You Should Record
 
-Before downloading anything, write down:
+Before downloading the Hackintosh tools, create one working folder, such as `MacOS Stuff` or `Hackintosh Project`. Keep every downloaded tool, screenshot, and generated folder there.
+
+Then write down:
 
 - CPU model.
 - GPU model, including iGPU and dGPU.
@@ -38,7 +40,7 @@ Before downloading anything, write down:
 - Ethernet chipset.
 - Wi-Fi and Bluetooth chipset.
 - Storage type: SATA, NVMe, or both.
-- Target macOS version.
+- Target macOS version, after OpCore Simplify tells you what your hardware supports.
 
 ## Safety Checklist
 

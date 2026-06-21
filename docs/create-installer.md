@@ -1,7 +1,7 @@
 ---
 title: Create the Installer
 parent: OpenCore Guide
-nav_order: 7
+nav_order: 6
 description: Download macOS recovery files and prepare the USB installer.
 permalink: /docs/create-installer.html
 prev_step:

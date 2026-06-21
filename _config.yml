@@ -12,7 +12,7 @@ logo: "/logo.png"
 
 search_enabled: true
 heading_anchors: true
-footer_content: "Copyright Banana Tech - Built with Just the Docs."
+footer_content: "© Banana Tech — Built with Just the Docs."
 nav_external_links:
   - title: Dortania Guide
     url: https://dortania.github.io/OpenCore-Install-Guide/

@@ -1,15 +1,15 @@
 ---
 title: Troubleshooting
 parent: OpenCore Guide
-nav_order: 10
+nav_order: 9
 description: Common OpenCore install problems and next steps.
 permalink: /docs/troubleshooting.html
 prev_step:
   title: Post-Install
   url: /docs/post-install.html
 next_step:
-  title: References and Updates
-  url: /docs/references.html
+  title: Tool Links
+  url: /docs/download-tools.html
 ---
 # Troubleshooting
 

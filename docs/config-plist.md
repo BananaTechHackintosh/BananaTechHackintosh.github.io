@@ -1,7 +1,7 @@
 ---
 title: Clean config.plist
 parent: OpenCore Guide
-nav_order: 6
+nav_order: 5
 description: Use ProperTree to refresh OpenCore config entries.
 permalink: /docs/config-plist.html
 prev_step:

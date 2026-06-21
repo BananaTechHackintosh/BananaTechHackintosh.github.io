@@ -9,31 +9,29 @@ permalink: /
 
 <div class="banana-kicker">Banana Tech Hackintosh</div>
 
-# How to Get macOS on a Compatible PC
+# Build a cleaner OpenCore Hackintosh
 
-A beginner-friendly OpenCore guide for compatible x86 PCs. Start with patience, check your hardware, build an EFI, map USB ports, create a recovery installer, install macOS, and finish post-install safely.
+A terminal-styled, beginner-friendly OpenCore guide for compatible x86 PCs: check hardware, build an EFI, map USB ports, create a recovery installer, install macOS, and finish post-install safely.
 
-<div class="banana-actions">
-  <a class="btn btn-primary" href="{{ '/guide.html' | relative_url }}">Start the guide</a>
-  <a class="btn" href="{{ '/docs/create-installer.html' | relative_url }}">Create installer</a>
-  <a class="btn" href="{{ '/docs/troubleshooting.html' | relative_url }}">Troubleshoot</a>
+<div class="banana-actions terminal-actions">
+  <a class="btn btn-primary terminal-type" style="--type-chars: 15" href="{{ '/guide.html' | relative_url }}"><span class="terminal-text">Start the guide</span></a>
+  <a class="btn terminal-type" style="--type-chars: 16" href="{{ '/docs/create-installer.html' | relative_url }}"><span class="terminal-text">Create installer</span></a>
+  <a class="btn terminal-type" style="--type-chars: 13" href="{{ '/docs/troubleshooting.html' | relative_url }}"><span class="terminal-text">Troubleshoot</span></a>
 </div>
 
-This web version keeps the PDF's simple step-by-step structure while adding search, links, and current OpenCore notes.
-
-[Download the original PDF guide]({{ '/BananaTech-Hackintosh-Guide.pdf' | relative_url }})
+**Updated docs:** cleaner chapters, current tool notes, and a stronger troubleshooting flow.
 
 </div>
 
 ## Choose Your Step
 
 <div class="banana-grid">
-  <div class="banana-card"><h3>1. Prep</h3><p>Collect hardware details, install Python, and understand the risks before touching disks.</p><p><a href="{{ '/docs/before-you-start.html' | relative_url }}">Before you start</a></p></div>
-  <div class="banana-card"><h3>2. Compatibility</h3><p>Use OpCore Simplify and Dortania references to choose a sensible target macOS version.</p><p><a href="{{ '/docs/check-compatibility.html' | relative_url }}">Check compatibility</a></p></div>
-  <div class="banana-card"><h3>3. EFI</h3><p>Generate the starter EFI, add your USB map, and clean the OpenCore config.</p><p><a href="{{ '/docs/build-efi.html' | relative_url }}">Build the EFI</a></p></div>
-  <div class="banana-card"><h3>4. Installer</h3><p>Download macOS recovery files with OpenCorePkg and prepare the USB from Windows.</p><p><a href="{{ '/docs/create-installer.html' | relative_url }}">Create installer</a></p></div>
-  <div class="banana-card"><h3>5. Install</h3><p>Boot OpenCore, enter recovery, format the target disk, and complete macOS setup.</p><p><a href="{{ '/docs/boot-install.html' | relative_url }}">Boot and install</a></p></div>
-  <div class="banana-card"><h3>6. Finish</h3><p>Copy EFI to the internal disk, test hardware, and save a known-good backup.</p><p><a href="{{ '/docs/post-install.html' | relative_url }}">Post-install</a></p></div>
+  <div class="banana-card"><h3>1. Prep</h3><p>Collect hardware details, install Python, and understand the risks before touching disks.</p><p><a href="{{ '/docs/before-you-start.html' | relative_url }}">Before you start ?</a></p></div>
+  <div class="banana-card"><h3>2. Compatibility</h3><p>Use OpCore Simplify and Dortania references to choose a sensible target macOS version.</p><p><a href="{{ '/docs/check-compatibility.html' | relative_url }}">Check compatibility ?</a></p></div>
+  <div class="banana-card"><h3>3. EFI</h3><p>Select the supported macOS version and generate the starter EFI in OpCore Simplify.</p><p><a href="{{ '/docs/build-efi.html' | relative_url }}">Build the EFI ?</a></p></div>
+  <div class="banana-card"><h3>4. USB Map</h3><p>Use USBToolBox, build the USB map kext, and add it to your EFI.</p><p><a href="{{ '/docs/usb-mapping.html' | relative_url }}">Map USB ports ?</a></p></div>
+  <div class="banana-card"><h3>5. Installer</h3><p>Clean the config, download macOS recovery files, and prepare the USB from Windows.</p><p><a href="{{ '/docs/create-installer.html' | relative_url }}">Create installer ?</a></p></div>
+  <div class="banana-card"><h3>6. Install</h3><p>Boot OpenCore, install macOS, copy EFI to the internal disk, and keep backups.</p><p><a href="{{ '/docs/boot-install.html' | relative_url }}">Boot and install ?</a></p></div>
 </div>
 
 ## Quick Notes
@@ -58,7 +56,7 @@ Use the form below and include your CPU, GPU, motherboard or laptop model, BIOS 
   <label for="question">Your question</label>
   <textarea id="question" name="question" rows="7" maxlength="2000" required></textarea>
 
-  <input type="hidden" name="_subject" value="Banana Tech - New Question">
+  <input type="hidden" name="_subject" value="Banana Tech ? New Question">
   <input type="hidden" name="page" value="bananatechhackintosh.github.io">
   <input type="text" name="_gotcha" style="display:none">
 

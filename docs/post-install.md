@@ -1,7 +1,7 @@
 ---
 title: Post-Install
 parent: OpenCore Guide
-nav_order: 9
+nav_order: 8
 description: Copy EFI to the internal disk and verify the finished Hackintosh.
 permalink: /docs/post-install.html
 prev_step:

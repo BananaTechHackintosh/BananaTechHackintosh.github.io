@@ -5,8 +5,8 @@ nav_order: 11
 description: Current upstream references used to refresh the Banana Tech guide.
 permalink: /docs/references.html
 prev_step:
-  title: Troubleshooting
-  url: /docs/troubleshooting.html
+  title: Tool Links
+  url: /docs/download-tools.html
 ---
 # References and Updates
 

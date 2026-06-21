@@ -1,19 +1,19 @@
 ---
-title: Download Tools
+title: Tool Links
 parent: OpenCore Guide
-nav_order: 3
+nav_order: 10
 description: Tools used by the Banana Tech OpenCore workflow.
 permalink: /docs/download-tools.html
 prev_step:
-  title: Check Compatibility
-  url: /docs/check-compatibility.html
+  title: Troubleshooting
+  url: /docs/troubleshooting.html
 next_step:
-  title: Build the EFI
-  url: /docs/build-efi.html
+  title: References and Updates
+  url: /docs/references.html
 ---
-# Download Tools
+# Tool Links
 
-Create a folder such as `macOS Stuff` or `Hackintosh Project` and keep everything there.
+This page is a tool list, not a required step in the middle of the guide. The main guide tells you when to use each tool.
 
 ## Required Tools
 
