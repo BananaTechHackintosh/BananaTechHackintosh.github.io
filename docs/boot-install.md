@@ -17,11 +17,14 @@ Before booting, connect ethernet if possible. Recovery installs often need netwo
 
 ## Boot From USB
 
-1. Shut down the computer.
+1. Connect ethernet if possible.
 2. Plug in the installer USB.
-3. Power on and repeatedly press your boot-menu key.
-4. Choose the USB drive.
-5. Wait for the OpenCore picker.
+3. Shut down the computer.
+4. Power on the computer.
+5. Repeatedly press your boot-menu key while the computer starts.
+6. Choose the USB drive from the one-time boot menu.
+7. Press `Enter`.
+8. Wait for the OpenCore picker.
 
 Common boot-menu keys include `F8`, `F9`, `F10`, `F11`, `F12`, `Esc`, or `Del`, depending on the manufacturer.
 
@@ -36,7 +39,7 @@ You may see entries such as:
 
 If some entries are hidden, press `Space`.
 
-Choose the macOS installer or recovery entry.
+Use the arrow keys to choose the macOS installer or recovery entry, then press `Enter`.
 
 ## Recovery Screen
 
@@ -67,7 +70,12 @@ If the disk is empty or you are intentionally erasing it:
 4. Select the target disk.
 5. Let the installer run.
 
-The machine may reboot several times. Each time, boot back through the USB and choose the macOS installer or installed macOS volume until setup completes.
+The machine may reboot several times. Each time it turns off or restarts:
+
+1. Press the boot-menu key again.
+2. Choose the USB again.
+3. In OpenCore, choose the macOS installer or installed macOS volume.
+4. Continue until normal macOS setup appears.
 
 {: .important }
 Do not unplug the USB until post-install is complete. Your internal disk probably cannot boot by itself yet.

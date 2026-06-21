@@ -17,17 +17,21 @@ USB mapping matters because macOS has port limits and expects USB ports to be de
 
 ## Use USBToolBox on Windows
 
-1. Download USBToolBox.
-2. Prefer the latest `Windows.exe` from releases, or use `Windows.zip` if antivirus blocks the self-extractor.
-3. Run the tool.
-4. If Windows blocks it, choose **Learn more** and only continue if you downloaded it from the real project page.
+1. Go to the USBToolBox GitHub repository:
+   - [USBToolBox](https://github.com/USBToolBox/tool)
+2. Click **Releases** on the right side of the page.
+3. Download the latest `Windows.exe`.
+4. If your browser blocks the file, choose the option to keep or download anyway only if you are on the real GitHub page.
+5. Run `Windows.exe`.
+6. If Windows blocks it, choose **Learn more** or **More info**.
+7. Click **Run anyway** only if you downloaded it from the real project page.
 
 ## Follow the USBToolBox Menu Flow
 
 The PDF's flow is:
 
 1. Type `D` and press `Enter` to discover ports.
-2. Wait a moment.
+2. Wait a moment for the port discovery screen to load.
 3. Type `B` and press `Enter` to go back.
 4. Type `C` and press `Enter` to configure ports.
 5. Type `N` and press `Enter`.
@@ -39,6 +43,8 @@ The PDF's flow is:
 
 If USBToolBox asks for a model identifier because legacy class is enabled, use the exact model identifier from your OpCore Simplify summary screenshot.
 
+Type the model identifier exactly. Do not add quotation marks.
+
 {: .note }
 USBToolBox says Windows can usually infer companion ports, so one USB 3 device may be enough for USB 3 ports. On macOS, you typically need both USB 2 and USB 3 devices for each USB 3 port.
 
@@ -46,11 +52,17 @@ USBToolBox says Windows can usually infer companion ports, so one USB 3 device m
 
 After USBToolBox builds the map:
 
-1. Copy the generated `.kext` folder from the path USBToolBox shows.
-2. Paste it into `EFI/OC/Kexts`.
-3. If the map uses USBToolBox.kext, also add the matching USBToolBox kext release.
-4. Remove `UTBDefault.kext` if it is present.
-5. Update `config.plist` with ProperTree's OC Clean Snapshot.
+1. Copy the generated file path USBToolBox shows.
+2. Open File Explorer.
+3. Paste that path into the File Explorer address bar.
+4. Press `Enter`.
+5. Copy the generated `.kext` folder.
+6. Open your working `EFI` folder.
+7. Open `EFI/OC/Kexts`.
+8. Paste the generated `.kext` folder there.
+9. If the map uses USBToolBox.kext, also add the matching USBToolBox kext release.
+10. Remove `UTBDefault.kext` if it is present.
+11. Update `config.plist` with ProperTree's OC Clean Snapshot.
 
 ## Common Mistake
 

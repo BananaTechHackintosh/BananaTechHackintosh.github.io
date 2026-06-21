@@ -17,11 +17,18 @@ This guide uses OpenCorePkg's `macrecovery.py` and Rufus to create a recovery in
 
 ## Download Recovery Files
 
-1. Download the latest OpenCorePkg release.
-2. Extract it.
-3. Open `Utilities/macrecovery`.
-4. Click the address bar in File Explorer, type `cmd`, and press Enter.
-5. Run the command for your target macOS version.
+1. Go to OpenCorePkg releases:
+   - [OpenCorePkg releases](https://github.com/acidanthera/OpenCorePkg/releases)
+2. Download the latest release ZIP.
+3. Extract the ZIP.
+4. Open the extracted OpenCorePkg folder.
+5. Open `Utilities`.
+6. Open `macrecovery`.
+7. Click the File Explorer address bar at the top.
+8. Type `cmd`.
+9. Press `Enter`.
+10. A Command Prompt window should open inside the `macrecovery` folder.
+11. Run the command for your target macOS version.
 
 Use `py` on Windows. If `py` does not work, try `python`.
 
@@ -49,6 +56,8 @@ When the download finishes, you should get a folder named:
 com.apple.recovery.boot
 ```
 
+Open the OpenCorePkg `Utilities/macrecovery` folder again and find `com.apple.recovery.boot`.
+
 Place it beside your `EFI` folder in your project folder, not inside `EFI`.
 
 Your project folder should look like:
@@ -61,11 +70,17 @@ Hackintosh Project/
 
 ## Format the USB with Rufus
 
-1. Open Rufus.
-2. Select the correct USB drive.
-3. Use a non-bootable/freeDOS-style format that creates a simple FAT32 volume.
-4. Start the format.
-5. Confirm that all USB data will be erased.
+1. Go to Rufus:
+   - [Rufus](https://rufus.ie/)
+2. Scroll down to the download section.
+3. Download the latest x86/x64 Windows release.
+4. Open Rufus.
+5. If Windows asks for permission to allow changes, click **Yes**.
+6. At the top, select your USB drive.
+7. Double-check the selected drive. It must be the USB, not another disk.
+8. Use a non-bootable/freeDOS-style format that creates a simple FAT32 volume.
+9. Start the format.
+10. Confirm that all USB data will be erased.
 
 {: .warning }
 Formatting deletes the USB contents. Double-check the selected drive.

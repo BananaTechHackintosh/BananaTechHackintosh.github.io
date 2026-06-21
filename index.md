@@ -15,6 +15,7 @@ A terminal-styled, beginner-friendly OpenCore guide for compatible x86 PCs: chec
 
 <div class="banana-actions terminal-actions">
   <a class="btn btn-primary terminal-type" style="--type-chars: 15" href="{{ '/guide.html' | relative_url }}"><span class="terminal-text">Start the guide</span></a>
+  <a class="btn terminal-type" style="--type-chars: 10" href="{{ '/docs/download-tools.html' | relative_url }}"><span class="terminal-text">Tool links</span></a>
   <a class="btn terminal-type" style="--type-chars: 16" href="{{ '/docs/create-installer.html' | relative_url }}"><span class="terminal-text">Create installer</span></a>
   <a class="btn terminal-type" style="--type-chars: 13" href="{{ '/docs/troubleshooting.html' | relative_url }}"><span class="terminal-text">Troubleshoot</span></a>
 </div>
@@ -26,12 +27,14 @@ A terminal-styled, beginner-friendly OpenCore guide for compatible x86 PCs: chec
 ## Choose Your Step
 
 <div class="banana-grid">
-  <div class="banana-card"><h3>1. Prep</h3><p>Collect hardware details, install Python, and understand the risks before touching disks.</p><p><a href="{{ '/docs/before-you-start.html' | relative_url }}">Before you start ?</a></p></div>
-  <div class="banana-card"><h3>2. Compatibility</h3><p>Use OpCore Simplify and Dortania references to choose a sensible target macOS version.</p><p><a href="{{ '/docs/check-compatibility.html' | relative_url }}">Check compatibility ?</a></p></div>
-  <div class="banana-card"><h3>3. EFI</h3><p>Select the supported macOS version and generate the starter EFI in OpCore Simplify.</p><p><a href="{{ '/docs/build-efi.html' | relative_url }}">Build the EFI ?</a></p></div>
-  <div class="banana-card"><h3>4. USB Map</h3><p>Use USBToolBox, build the USB map kext, and add it to your EFI.</p><p><a href="{{ '/docs/usb-mapping.html' | relative_url }}">Map USB ports ?</a></p></div>
-  <div class="banana-card"><h3>5. Installer</h3><p>Clean the config, download macOS recovery files, and prepare the USB from Windows.</p><p><a href="{{ '/docs/create-installer.html' | relative_url }}">Create installer ?</a></p></div>
-  <div class="banana-card"><h3>6. Install</h3><p>Boot OpenCore, install macOS, copy EFI to the internal disk, and keep backups.</p><p><a href="{{ '/docs/boot-install.html' | relative_url }}">Boot and install ?</a></p></div>
+  <div class="banana-card"><h3>1. Prep</h3><p>Collect hardware details, make a working folder, understand the risks, and get ready before touching disks.</p><p><a href="{{ '/docs/before-you-start.html' | relative_url }}">Before you start -></a></p></div>
+  <div class="banana-card"><h3>2. Compatibility</h3><p>Install Python, download OpCore Simplify, run the hardware scan, and write down the supported macOS version.</p><p><a href="{{ '/docs/check-compatibility.html' | relative_url }}">Check compatibility -></a></p></div>
+  <div class="banana-card"><h3>3. EFI</h3><p>Select the supported macOS version, build the starter EFI, and save the result screenshot.</p><p><a href="{{ '/docs/build-efi.html' | relative_url }}">Build the EFI -></a></p></div>
+  <div class="banana-card"><h3>4. USB Map</h3><p>Download USBToolBox, follow the menu flow, build the USB map kext, and add it to your EFI.</p><p><a href="{{ '/docs/usb-mapping.html' | relative_url }}">Map USB ports -></a></p></div>
+  <div class="banana-card"><h3>5. Config</h3><p>Download ProperTree, run OC Clean Snapshot, and save the updated `config.plist`.</p><p><a href="{{ '/docs/config-plist.html' | relative_url }}">Clean config.plist -></a></p></div>
+  <div class="banana-card"><h3>6. Installer</h3><p>Download OpenCorePkg recovery files, format the USB with Rufus, and copy both required folders.</p><p><a href="{{ '/docs/create-installer.html' | relative_url }}">Create installer -></a></p></div>
+  <div class="banana-card"><h3>7. Install</h3><p>Boot from USB, choose the macOS installer in OpenCore, format the target disk, and complete setup.</p><p><a href="{{ '/docs/boot-install.html' | relative_url }}">Boot and install -></a></p></div>
+  <div class="banana-card"><h3>8. Finish</h3><p>Mount the internal EFI, copy your working EFI folder, reboot without USB, and save backups.</p><p><a href="{{ '/docs/post-install.html' | relative_url }}">Post-install -></a></p></div>
 </div>
 
 ## Quick Notes

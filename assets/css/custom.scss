@@ -231,6 +231,24 @@ body {
   letter-spacing: -0.025em;
 }
 
+.main-content {
+  max-width: 58rem;
+}
+
+.main-content p,
+.main-content li {
+  line-height: 1.68;
+}
+
+.main-content ol,
+.main-content ul {
+  margin-bottom: 1.1rem;
+}
+
+.main-content li + li {
+  margin-top: 0.32rem;
+}
+
 .main-content h1 {
   color: var(--banana-gold);
 }
@@ -246,6 +264,21 @@ body {
 a:not(.btn):not(.site-button):not(.nav-list-link) {
   text-decoration-color: rgba(94, 234, 212, 0.45);
   text-underline-offset: 0.16em;
+}
+
+a:not(.btn):not(.site-button):not(.nav-list-link):hover {
+  text-decoration-color: rgba(232, 199, 102, 0.85);
+}
+
+.main-content .highlight,
+.main-content pre.highlight,
+.main-content div.highlighter-rouge {
+  border: 1px solid rgba(255, 209, 102, 0.16);
+  border-radius: 6px;
+}
+
+.main-content code {
+  border-radius: 4px;
 }
 
 .banana-hero {
@@ -275,19 +308,34 @@ a:not(.btn):not(.site-button):not(.nav-list-link) {
 
 .banana-grid {
   display: grid;
-  gap: 1rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.9rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
 .banana-card {
   border: 1px solid rgba(255, 209, 102, 0.15);
   border-radius: 6px;
-  padding: 1rem;
+  padding: 1.05rem;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025));
+  transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
 }
 
 .banana-card strong {
   color: #ffe29a;
+}
+
+.banana-card h3 {
+  margin-top: 0;
+}
+
+.banana-card p:last-child {
+  margin-bottom: 0;
+}
+
+.banana-card:hover {
+  border-color: rgba(232, 199, 102, 0.42);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.032));
+  transform: translateY(-1px);
 }
 
 .label-yellow,
@@ -399,6 +447,17 @@ a:not(.btn):not(.site-button):not(.nav-list-link) {
 
 .step-nav-disabled {
   opacity: 0.42;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
 
 @media (max-width: 640px) {

@@ -17,16 +17,35 @@ Use OpCore Simplify as the first compatibility checkpoint. Treat it as a helper,
 
 ## Install Python First
 
-Before opening OpCore Simplify, install Python from the official Python website. Several OpenCore tools use Python scripts, so do this first.
+Before opening OpCore Simplify, install Python from the official Python website:
+
+- [Download Python](https://www.python.org/downloads/)
+
+Several OpenCore tools use Python scripts, so do this first.
+
+When installing Python on Windows:
+
+1. Open the Python installer.
+2. Turn on **Add python.exe to PATH** if the installer shows that option.
+3. Click **Install Now**.
+4. Wait for the installer to finish.
+5. Close the installer.
 
 ## Download and Open OpCore Simplify
 
-1. Download OpCore Simplify from its GitHub repository.
-2. Extract the ZIP.
-3. Open the extracted folder.
-4. Run the Windows batch file for OpCore Simplify.
-5. If Windows warns that the publisher is unknown, only continue if you downloaded it from the real project page.
-6. If the tool asks to update, type `y` and press `Enter`.
+1. Go to the OpCore Simplify GitHub repository:
+   - [OpCore Simplify](https://github.com/lzhoang2801/OpCore-Simplify)
+2. Click the green **Code** button.
+3. Click **Download ZIP**.
+4. Open your Downloads folder.
+5. Right-click the downloaded ZIP.
+6. Click **Extract All**.
+7. Open the extracted OpCore Simplify folder.
+8. Look for the Windows batch or command file for OpCore Simplify.
+9. Double-click it.
+10. If Windows warns that the publisher is unknown, click **More info** or **Learn more**.
+11. Click **Run anyway** only if you downloaded it from the real GitHub page.
+12. If the tool asks to update, type `y` and press `Enter`.
 
 The app opens in a Command Prompt window. That is normal.
 
@@ -38,6 +57,8 @@ The app opens in a Command Prompt window. That is normal.
 
 The scan should show your computer components and the macOS versions your hardware can support.
 
+Do not close the window yet. You still need the result.
+
 ## Read the Result
 
 After the scan finishes:
@@ -48,6 +69,8 @@ After the scan finishes:
 4. Write down the newest supported macOS version listed there.
 
 You will use that version in the next step when building the EFI and later when downloading recovery files.
+
+If you are not sure what to write down, take a screenshot or phone photo of the result screen before continuing.
 
 ## If Hardware Is Unsupported
 

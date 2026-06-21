@@ -19,6 +19,19 @@ After macOS setup finishes, keep the USB plugged in. You still need to copy the 
 
 Use an EFI mounting tool or Terminal commands to mount the internal disk's EFI partition.
 
+One common EFI mounting tool is:
+
+- [MountEFI](https://github.com/corpnewt/MountEFI)
+
+If you use MountEFI:
+
+1. Download the ZIP from GitHub.
+2. Extract it.
+3. Open the `.command` file.
+4. If macOS says the developer is not recognized, allow it only if you downloaded it from the real GitHub page.
+5. Enter your password if macOS asks.
+6. Select the internal macOS disk, not the USB.
+
 A manual Terminal approach looks like this:
 
 ```bash

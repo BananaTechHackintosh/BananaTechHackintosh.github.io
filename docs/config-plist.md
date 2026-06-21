@@ -17,10 +17,16 @@ next_step:
 
 ## Open ProperTree
 
-1. Download ProperTree.
-2. Extract it.
-3. On Windows, run `ProperTree.bat`.
-4. Open your EFI's `OC/config.plist`.
+1. Go to the ProperTree GitHub repository:
+   - [ProperTree](https://github.com/corpnewt/ProperTree)
+2. Click the green **Code** button.
+3. Click **Download ZIP**.
+4. Extract the ZIP.
+5. Open the ProperTree folder.
+6. On Windows, run `ProperTree.bat`.
+7. If Windows blocks it, click **More info** or **Learn more**, then **Run anyway** only if you downloaded it from the real GitHub page.
+8. You should see a blank Command Prompt window and the ProperTree window.
+9. In ProperTree, open your EFI's `OC/config.plist`.
 
 ## Run OC Clean Snapshot
 
@@ -28,7 +34,9 @@ next_step:
 2. Select your `EFI/OC` folder.
 3. If ProperTree asks to remove duplicates, accept.
 4. If it asks to add missing directories, accept.
-5. Save the file.
+5. Close the ProperTree window.
+6. When it asks to save, click **Yes**.
+7. Save the file as the default `config.plist` in your `EFI/OC` folder.
 
 ProperTree's OC Snapshot walks ACPI, Kexts, Tools, and Drivers, then updates the matching config sections. OC Clean Snapshot starts fresh for those sections, which is usually better after adding USB maps or cleaning a generated EFI.
 
