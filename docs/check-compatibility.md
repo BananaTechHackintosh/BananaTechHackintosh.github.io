@@ -13,7 +13,7 @@ next_step:
 ---
 # Check Compatibility
 
-Use OpCore Simplify as the first compatibility checkpoint. Treat it as a helper ? not as the final authority.
+Use OpCore Simplify as the first compatibility checkpoint. Treat it as a helper, not as the final authority.
 
 ## Use OpCore Simplify
 

@@ -49,7 +49,7 @@ When the download finishes, you should get a folder named:
 com.apple.recovery.boot
 ```
 
-Place it beside your `EFI` folder in your project folder ? not inside `EFI`.
+Place it beside your `EFI` folder in your project folder, not inside `EFI`.
 
 Your project folder should look like:
 
