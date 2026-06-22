@@ -2,20 +2,27 @@
 ---
 
 :root {
-  --bt-accent: #3eaf7c;
-  --bt-accent-dark: #2f8f66;
-  --bt-text: #2c3e50;
-  --bt-heading: #1f2d3d;
-  --bt-muted: #6a737d;
-  --bt-border: #eaecef;
-  --bt-soft: #f6f8fa;
-  --bt-warning: #fff8e1;
-  --bt-warning-border: #f2cc60;
-  --bt-code: #f6f8fa;
+  --bt-bg: #080b16;
+  --bt-sidebar: #0d1424;
+  --bt-panel: #101827;
+  --bt-panel-soft: #111a2e;
+  --bt-accent: #ffd166;
+  --bt-accent-dark: #d8a93c;
+  --bt-link: #5eead4;
+  --bt-link-hover: #9fcdbf;
+  --bt-text: #f3f0df;
+  --bt-heading: #fff1b8;
+  --bt-muted: #b9c3d6;
+  --bt-border: rgba(255, 209, 102, 0.18);
+  --bt-soft: rgba(255, 255, 255, 0.045);
+  --bt-code: #111827;
 }
 
 body {
-  background: #ffffff;
+  background:
+    radial-gradient(900px 520px at 18% -10%, rgba(216, 169, 60, 0.09), transparent 58%),
+    radial-gradient(700px 420px at 105% 15%, rgba(143, 184, 216, 0.06), transparent 60%),
+    linear-gradient(180deg, #080b16 0%, #0a1020 52%, #080b16 100%);
   color: var(--bt-text);
   font-family:
     -apple-system,
@@ -38,37 +45,39 @@ body {
 
 .side-bar {
   border-right: 1px solid var(--bt-border);
-  background: #ffffff;
+  background:
+    linear-gradient(180deg, rgba(13, 20, 36, 0.98), rgba(9, 14, 27, 0.98)),
+    radial-gradient(420px 260px at 50% 0%, rgba(216, 169, 60, 0.08), transparent 70%);
 }
 
 .main-header {
   border-bottom: 1px solid var(--bt-border);
-  background: rgba(255, 255, 255, 0.96);
+  background: rgba(8, 11, 22, 0.78);
   backdrop-filter: blur(10px);
 }
 
 .site-nav .nav-list-link {
   border-radius: 4px;
-  color: #4e6e8e;
+  color: var(--bt-accent);
   line-height: 1.35;
 }
 
 .site-nav .nav-list-link.active,
 .site-nav .nav-list-link:hover,
 .site-nav .nav-list-item > .nav-list-link.active {
-  background: #f3f5f7;
-  color: var(--bt-accent);
+  background: linear-gradient(90deg, #e8c766, #d8a93c);
+  color: #101010;
   font-weight: 650;
 }
 
 .site-nav .nav-list-expander {
-  color: #8c99a6;
+  color: var(--bt-muted);
 }
 
 .search-input {
   border: 1px solid var(--bt-border);
   border-radius: 6px;
-  background: #ffffff;
+  background: var(--bt-panel-soft);
   color: var(--bt-text);
 }
 
@@ -111,19 +120,19 @@ body {
 }
 
 a:not(.btn):not(.site-button):not(.nav-list-link) {
-  color: var(--bt-accent);
+  color: var(--bt-link);
   text-decoration: none;
 }
 
 a:not(.btn):not(.site-button):not(.nav-list-link):hover {
-  color: var(--bt-accent-dark);
+  color: var(--bt-link-hover);
   text-decoration: underline;
   text-underline-offset: 0.18em;
 }
 
 .main-content code {
   border-radius: 4px;
-  color: #476582;
+  color: #eadfbf;
   background: var(--bt-code);
 }
 
@@ -140,8 +149,8 @@ a.site-button,
   border: 1px solid var(--bt-border) !important;
   border-radius: 6px !important;
   box-shadow: none !important;
-  background: #ffffff !important;
-  color: var(--bt-accent) !important;
+  background: rgba(10, 17, 31, 0.82) !important;
+  color: #eadfbf !important;
   font-weight: 650;
   transition:
     color 160ms ease,
@@ -164,21 +173,21 @@ a.site-button::after,
 a.site-button:hover,
 a.site-button:focus {
   border-color: rgba(62, 175, 124, 0.42) !important;
-  background: #f3fbf7 !important;
-  color: var(--bt-accent-dark) !important;
+  background: rgba(15, 24, 42, 0.96) !important;
+  color: #fff3cf !important;
   transform: translateY(-1px);
 }
 
 .btn-primary {
-  border-color: var(--bt-accent) !important;
-  background: var(--bt-accent) !important;
-  color: #ffffff !important;
+  border-color: rgba(255, 209, 102, 0.72) !important;
+  background: rgba(255, 209, 102, 0.12) !important;
+  color: var(--bt-accent) !important;
 }
 
 .btn-primary:hover,
 .btn-primary:focus {
-  background: var(--bt-accent-dark) !important;
-  color: #ffffff !important;
+  background: rgba(255, 209, 102, 0.2) !important;
+  color: #fff3cf !important;
 }
 
 .banana-hero {
@@ -186,12 +195,13 @@ a.site-button:focus {
   border-radius: 8px;
   padding: clamp(1.4rem, 3vw, 2.4rem);
   background:
-    linear-gradient(135deg, rgba(62, 175, 124, 0.08), rgba(255, 255, 255, 0) 42%),
-    #ffffff;
+    radial-gradient(640px 280px at 10% 0%, rgba(232, 199, 102, 0.11), transparent 62%),
+    radial-gradient(560px 260px at 96% 22%, rgba(143, 184, 216, 0.07), transparent 60%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02));
 }
 
 .banana-kicker {
-  color: var(--bt-accent);
+  color: var(--bt-link-hover);
   font-size: 0.78rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -215,7 +225,7 @@ a.site-button:focus {
   border: 1px solid var(--bt-border);
   border-radius: 8px;
   padding: 1.05rem;
-  background: #ffffff;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025));
   transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
 }
 
@@ -228,8 +238,8 @@ a.site-button:focus {
 }
 
 .banana-card:hover {
-  border-color: rgba(62, 175, 124, 0.32);
-  box-shadow: 0 8px 24px rgba(31, 45, 61, 0.08);
+  border-color: rgba(232, 199, 102, 0.42);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
   transform: translateY(-1px);
 }
 
@@ -263,7 +273,7 @@ a.site-button:focus {
   border-radius: 6px;
   padding: 0.78rem;
   color: var(--bt-text);
-  background: #ffffff;
+  background: var(--bt-panel-soft);
 }
 
 .contact-form input:focus,
@@ -290,7 +300,7 @@ a.site-button:focus {
 .step-nav-home {
   border: 1px solid var(--bt-border);
   border-radius: 6px;
-  background: #ffffff;
+  background: rgba(10, 17, 31, 0.72);
   color: var(--bt-text);
   text-decoration: none;
   transition: border-color 160ms ease, background 160ms ease, transform 160ms ease;
@@ -332,7 +342,7 @@ a.site-button:focus {
 .step-nav-link:not(.step-nav-disabled):hover,
 .step-nav-home:hover {
   border-color: rgba(62, 175, 124, 0.32);
-  background: #f3fbf7;
+  background: rgba(15, 24, 42, 0.96);
   transform: translateY(-1px);
 }
 
