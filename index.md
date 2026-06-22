@@ -17,9 +17,9 @@ keywords:
 
 <div class="banana-kicker">Banana Tech Hackintosh</div>
 
-# Build a cleaner Hackintosh
+# Build a cleaner OpenCore Hackintosh
 
-A beginner-friendly OpenCore guide for compatible x86 PCs: check hardware, build an EFI, map USB ports, create a recovery installer, install macOS, and finish post-install safely.
+A terminal-styled, beginner-friendly OpenCore guide for compatible x86 PCs: check hardware, build an EFI, map USB ports, create a recovery installer, install macOS, and finish post-install safely.
 
 <div class="banana-actions terminal-actions">
   <a class="btn btn-primary terminal-type" style="--type-chars: 15" href="{{ '/guide.html' | relative_url }}"><span class="terminal-text">Start the guide</span></a>
@@ -67,7 +67,7 @@ Use the form below and include your CPU, GPU, motherboard or laptop model, BIOS 
   <label for="question">Your question</label>
   <textarea id="question" name="question" rows="7" maxlength="2000" required></textarea>
 
-  <input type="hidden" name="_subject" value="Banana Tech - New Question">
+  <input type="hidden" name="_subject" value="Banana Tech ? New Question">
   <input type="hidden" name="page" value="bananatechhackintosh.github.io">
   <input type="text" name="_gotcha" style="display:none">
 
