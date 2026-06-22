@@ -2,8 +2,14 @@
 title: Post-Install
 parent: OpenCore Guide
 nav_order: 8
-description: Copy EFI to the internal disk and verify the finished Hackintosh.
+description: Finish a Hackintosh install by mounting the internal EFI, copying the working OpenCore EFI folder, rebooting without USB, and testing hardware.
 permalink: /docs/post-install.html
+keywords:
+  - Hackintosh post install
+  - copy EFI to internal disk
+  - OpenCore post install
+  - MountEFI
+  - boot without USB
 prev_step:
   title: Boot and Install macOS
   url: /docs/boot-install.html

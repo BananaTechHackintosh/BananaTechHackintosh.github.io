@@ -2,8 +2,14 @@
 title: Map USB Ports
 parent: OpenCore Guide
 nav_order: 4
-description: Use USBToolBox to create a USB map kext for the EFI.
+description: Map Hackintosh USB ports with USBToolBox, build a USB map kext, and add it to the OpenCore EFI for modern macOS installs.
 permalink: /docs/usb-mapping.html
+keywords:
+  - Hackintosh USB mapping
+  - USBToolBox
+  - USB map kext
+  - OpenCore USB ports
+  - XhciPortLimit
 prev_step:
   title: Build the EFI
   url: /docs/build-efi.html

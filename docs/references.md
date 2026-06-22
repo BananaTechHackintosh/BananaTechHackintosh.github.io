@@ -2,8 +2,14 @@
 title: References and Updates
 parent: OpenCore Guide
 nav_order: 11
-description: Current upstream references used to refresh the Banana Tech guide.
+description: Hackintosh and OpenCore reference links used to keep the Banana Tech guide current, including Dortania, OpenCorePkg, USBToolBox, ProperTree, and Rufus.
 permalink: /docs/references.html
+keywords:
+  - Hackintosh references
+  - OpenCore references
+  - Dortania guide
+  - OpenCorePkg
+  - Hackintosh updates
 prev_step:
   title: Tool Links
   url: /docs/download-tools.html

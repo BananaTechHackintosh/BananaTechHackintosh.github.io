@@ -2,8 +2,14 @@
 title: Build the EFI
 parent: OpenCore Guide
 nav_order: 3
-description: Build and save the starter EFI folder.
+description: Build a Hackintosh EFI folder with OpCore Simplify, select the supported macOS version, save the result, and prepare OpenCore files.
 permalink: /docs/build-efi.html
+keywords:
+  - Hackintosh EFI
+  - build EFI folder
+  - OpenCore EFI
+  - OpCore Simplify EFI
+  - macOS EFI folder
 prev_step:
   title: Check Compatibility
   url: /docs/check-compatibility.html

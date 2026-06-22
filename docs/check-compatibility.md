@@ -2,8 +2,14 @@
 title: Check Compatibility
 parent: OpenCore Guide
 nav_order: 2
-description: Use OpCore Simplify and compatibility checks to choose a target macOS version.
+description: Check Hackintosh compatibility with OpCore Simplify, scan PC hardware, and choose a supported macOS version before building an EFI.
 permalink: /docs/check-compatibility.html
+keywords:
+  - Hackintosh compatibility
+  - OpCore Simplify
+  - OpenCore hardware scan
+  - supported macOS version
+  - macOS PC compatibility
 prev_step:
   title: Before You Start
   url: /docs/before-you-start.html

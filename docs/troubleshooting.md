@@ -2,8 +2,14 @@
 title: Troubleshooting
 parent: OpenCore Guide
 nav_order: 9
-description: Common OpenCore install problems and next steps.
+description: Troubleshoot common Hackintosh and OpenCore install problems including USB boot issues, missing picker entries, no internet, boot loops, and kernel panics.
 permalink: /docs/troubleshooting.html
+keywords:
+  - Hackintosh troubleshooting
+  - OpenCore troubleshooting
+  - Hackintosh boot loop
+  - OpenCore picker missing
+  - Hackintosh kernel panic
 prev_step:
   title: Post-Install
   url: /docs/post-install.html

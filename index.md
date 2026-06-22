@@ -1,8 +1,16 @@
 ---
 title: Home
 nav_order: 1
-description: Beginner-friendly OpenCore Hackintosh documentation with EFI setup, USB mapping, installer preparation, troubleshooting, and support.
+description: Beginner-friendly Hackintosh guide for installing macOS on a compatible PC with OpenCore, EFI setup, USB mapping, installer creation, and troubleshooting.
 permalink: /
+keywords:
+  - Hackintosh guide
+  - install macOS on PC
+  - OpenCore Hackintosh
+  - beginner Hackintosh
+  - macOS on compatible PC
+  - EFI setup
+  - USB mapping
 ---
 
 <div class="banana-hero" markdown="1">

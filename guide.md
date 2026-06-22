@@ -2,8 +2,15 @@
 title: OpenCore Guide
 nav_order: 2
 has_children: true
-description: Banana Tech's full Just-the-Docs OpenCore Hackintosh guide.
+description: Full Banana Tech Hackintosh install guide for compatible PCs using OpenCore, OpCore Simplify, USBToolBox, ProperTree, and macOS recovery.
 permalink: /guide.html
+keywords:
+  - Hackintosh install guide
+  - OpenCore guide
+  - OpenCore Hackintosh guide
+  - macOS PC install
+  - EFI guide
+  - Hackintosh troubleshooting
 ---
 
 # Banana Tech OpenCore Guide

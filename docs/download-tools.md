@@ -2,8 +2,16 @@
 title: Tool Links
 parent: OpenCore Guide
 nav_order: 10
-description: Tools used by the Banana Tech OpenCore workflow.
+description: Download Hackintosh tools for the Banana Tech OpenCore workflow, including Python, OpCore Simplify, USBToolBox, ProperTree, OpenCorePkg, and Rufus.
 permalink: /docs/download-tools.html
+keywords:
+  - Hackintosh tools
+  - OpenCore tools
+  - OpCore Simplify download
+  - USBToolBox download
+  - ProperTree download
+  - OpenCorePkg download
+  - Rufus download
 prev_step:
   title: Troubleshooting
   url: /docs/troubleshooting.html

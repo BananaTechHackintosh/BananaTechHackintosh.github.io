@@ -2,6 +2,11 @@
 <link rel="shortcut icon" href="{{ '/logo.png' | relative_url }}" type="image/png">
 <link rel="apple-touch-icon" href="{{ '/logo.png' | relative_url }}">
 <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
+{% assign seo_keywords = page.keywords | default: site.keywords %}
+{% if seo_keywords %}
+<meta name="keywords" content="{{ seo_keywords | join: ', ' | escape }}">
+{% endif %}
+<meta name="theme-color" content="#080b16">
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PM2BNW0Q6Z"></script>
 <script>

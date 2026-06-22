@@ -2,8 +2,14 @@
 title: Clean config.plist
 parent: OpenCore Guide
 nav_order: 5
-description: Use ProperTree to refresh OpenCore config entries.
+description: Clean a Hackintosh OpenCore config.plist with ProperTree, refresh ACPI, kext, driver, and tool entries, and save the EFI config.
 permalink: /docs/config-plist.html
+keywords:
+  - Hackintosh config.plist
+  - OpenCore config.plist
+  - ProperTree
+  - OC Clean Snapshot
+  - EFI config
 prev_step:
   title: Map USB Ports
   url: /docs/usb-mapping.html

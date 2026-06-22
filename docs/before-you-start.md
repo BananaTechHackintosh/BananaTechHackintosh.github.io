@@ -2,8 +2,13 @@
 title: Before You Start
 parent: OpenCore Guide
 nav_order: 1
-description: Requirements, warnings, and setup notes before beginning a Hackintosh install.
+description: Hackintosh requirements, warnings, hardware notes, and setup checklist before installing macOS on a compatible PC with OpenCore.
 permalink: /docs/before-you-start.html
+keywords:
+  - Hackintosh requirements
+  - Hackintosh compatibility
+  - install macOS on PC
+  - OpenCore preparation
 next_step:
   title: Check Compatibility
   url: /docs/check-compatibility.html

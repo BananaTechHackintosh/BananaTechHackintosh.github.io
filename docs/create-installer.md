@@ -2,8 +2,15 @@
 title: Create the Installer
 parent: OpenCore Guide
 nav_order: 6
-description: Download macOS recovery files and prepare the USB installer.
+description: Create a Hackintosh USB installer from Windows with OpenCorePkg macrecovery commands, Rufus, an EFI folder, and macOS recovery files.
 permalink: /docs/create-installer.html
+keywords:
+  - Hackintosh USB installer
+  - macrecovery.py
+  - OpenCorePkg
+  - Rufus Hackintosh USB
+  - macOS recovery installer
+  - com.apple.recovery.boot
 prev_step:
   title: Clean config.plist
   url: /docs/config-plist.html

@@ -2,8 +2,14 @@
 title: Boot and Install macOS
 parent: OpenCore Guide
 nav_order: 7
-description: Boot the USB, enter recovery, format the target disk, and install macOS.
+description: Boot the Hackintosh USB installer, choose macOS in OpenCore, enter recovery, format the target disk, and install macOS on a compatible PC.
 permalink: /docs/boot-install.html
+keywords:
+  - boot Hackintosh USB
+  - install macOS on PC
+  - OpenCore picker
+  - macOS recovery
+  - Hackintosh install
 prev_step:
   title: Create the Installer
   url: /docs/create-installer.html

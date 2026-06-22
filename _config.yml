@@ -1,7 +1,9 @@
-title: Banana Tech Hackintosh
-description: Beginner-friendly OpenCore Hackintosh guide for compatible PCs, EFI setup, troubleshooting, and support.
+﻿title: Banana Tech Hackintosh
+tagline: Beginner Hackintosh Install Guide
+description: Beginner-friendly Hackintosh guide for installing macOS on compatible PCs with OpenCore, EFI setup, USB mapping, macOS recovery installer steps, troubleshooting, and support.
 url: "https://bananatechhackintosh.github.io"
 baseurl: ""
+lang: en_US
 
 theme: just-the-docs
 color_scheme: banana_dark
@@ -13,6 +15,18 @@ logo: "/logo.png"
 search_enabled: true
 heading_anchors: true
 footer_content: "© Banana Tech — Built with Just the Docs."
+keywords:
+  - Hackintosh
+  - Hackintosh guide
+  - OpenCore Hackintosh
+  - install macOS on PC
+  - macOS on Windows PC
+  - EFI folder
+  - USB mapping
+  - macOS recovery installer
+  - OpCore Simplify
+  - ProperTree
+  - USBToolBox
 nav_external_links:
   - title: Dortania Guide
     url: https://dortania.github.io/OpenCore-Install-Guide/

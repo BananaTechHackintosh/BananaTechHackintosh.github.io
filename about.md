@@ -1,8 +1,13 @@
 ---
 title: About
 nav_order: 3
-description: About Banana Tech and the Hackintosh guide.
+description: About Banana Tech's beginner Hackintosh guide for installing macOS on compatible PCs with OpenCore and step-by-step troubleshooting.
 permalink: /about.html
+keywords:
+  - Banana Tech Hackintosh
+  - Hackintosh help
+  - beginner Hackintosh guide
+  - OpenCore support
 ---
 
 # About Banana Tech
